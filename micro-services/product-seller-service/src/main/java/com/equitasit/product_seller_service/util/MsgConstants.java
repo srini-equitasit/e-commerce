@@ -1,9 +1,9 @@
-package com.equitasit.product_price_service.util;
+package com.equitasit.product_seller_service.util;
 
 public enum MsgConstants {
 
 
-    PRODUCT_PRICE_NOT_FOUND("101", "Product Price Not Found for given id");
+    PRODUCT_SELLER_NOT_FOUND("101", "Product Seller Not Found for given id");
 
     private String code;
 

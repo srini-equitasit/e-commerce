@@ -2,7 +2,7 @@ server:
   port: 9081
 spring:
   application:
-    name: product-service
+    name: product-seller-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${db_pwd}

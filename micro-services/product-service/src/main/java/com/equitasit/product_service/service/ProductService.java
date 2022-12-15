@@ -76,6 +76,7 @@ public class ProductService {
     public void remove(Integer prodId) {
         Optional<Product> optionalProduct = productRepository.findById(prodId);
         if (!optionalProduct.isPresent()) {
+            log.error("product not found for product id {} ", prodId);
             throw new ProductException(MsgConstants.PRODUCT_NOT_FOUND);
         }
         Product product = optionalProduct.get();
