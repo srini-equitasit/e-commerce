@@ -2,7 +2,7 @@ server:
   port: 9081
 spring:
   application:
-    name: product-seller-service
+    name: product-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${db_pwd}
@@ -24,3 +24,7 @@ management:
     web.exposure.include: "*"
   endpoint:
     shutdown.enabled: true
+product:
+  app:
+    priceUrl: ${price_url}
+    sellerUrl: ${seller_url}

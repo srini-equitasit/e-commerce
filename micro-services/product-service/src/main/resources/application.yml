@@ -2,7 +2,7 @@ server:
   port: 9081
 spring:
   application:
-    name: product-seller-service
+    name: product-service
   h2:
     console.enabled: true
   datasource:
@@ -27,4 +27,8 @@ management:
   endpoints:
     web.exposure.include: "*"
   endpoint:
-    shutdown.enabled: true
+    shutdown.enabled:
+product:
+  app:
+    priceUrl: ${price_url}
+    sellerUrl: ${seller_url}

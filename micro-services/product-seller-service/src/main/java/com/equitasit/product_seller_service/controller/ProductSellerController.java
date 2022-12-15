@@ -23,7 +23,7 @@ public class ProductSellerController {
 
         log.debug("enter");
         log.info("saving the product seller info {}", productSellerDTO);
-        ProductSellerDTO savedProductSellerDTO= productSellerService.save(productSellerDTO);
+        ProductSellerDTO savedProductSellerDTO = productSellerService.save(productSellerDTO);
         log.info("saved product seller info {}", productSellerDTO);
         log.debug("exit");
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProductSellerDTO);
@@ -69,6 +69,16 @@ public class ProductSellerController {
         List<ProductSellerDTO> productSellerDTOList = productSellerService.getAll();
 
         log.info("product size {}", productSellerDTOList.size());
+        log.debug("exit");
+        return ResponseEntity.ok(productSellerDTOList);
+    }
+
+    @GetMapping("product/{id}")
+    public ResponseEntity getSellersForProductId(@PathVariable("id") Integer productId) {
+        log.debug("enter");
+        log.info("getting product seller info for product id {}", productId);
+        List<ProductSellerDTO> productSellerDTOList = productSellerService.getSellersForProductId(productId);
+        log.info("product seller info list {}", productSellerDTOList);
         log.debug("exit");
         return ResponseEntity.ok(productSellerDTOList);
     }

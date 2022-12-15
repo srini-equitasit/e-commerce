@@ -2,7 +2,7 @@ server:
   port: 9083
 spring:
   application:
-    name: product-service
+    name: product-seller-service
   h2:
     console.enabled: true
   datasource:

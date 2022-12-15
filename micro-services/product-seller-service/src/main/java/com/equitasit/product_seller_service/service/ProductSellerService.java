@@ -81,4 +81,13 @@ public class ProductSellerService {
         productSellerRepository.delete(product);
     }
 
+    public List<ProductSellerDTO> getSellersForProductId(Integer productID) {
+        log.debug("enter");
+        List<ProductSeller> productSellerList = productSellerRepository.findByProductId(productID);
+        List<ProductSellerDTO> productSellerDTOList = productSellerList.stream().map(p -> modelMapper.map(p, ProductSellerDTO.class)).collect(Collectors.toList());
+
+        log.debug("exit");
+        return productSellerDTOList;
+    }
+
 }

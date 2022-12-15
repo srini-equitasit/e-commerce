@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +22,7 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
 
     @Autowired
     private ModelMapper modelMapper;
@@ -74,6 +74,7 @@ public class ProductService {
 
     @Transactional
     public void remove(Integer prodId) {
+        log.debug("enter");
         Optional<Product> optionalProduct = productRepository.findById(prodId);
         if (!optionalProduct.isPresent()) {
             log.error("product not found for product id {} ", prodId);
@@ -81,6 +82,8 @@ public class ProductService {
         }
         Product product = optionalProduct.get();
         productRepository.delete(product);
+        log.info("delete success  for product {} ", product);
+        log.debug("exit");
     }
 
 
