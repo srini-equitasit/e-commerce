@@ -21,6 +21,6 @@ springdoc:
 #actuator
 management:
   endpoints:
-    web.exposure.include: *
+    web.exposure.include: "*"
   endpoint:
     shutdown.enabled: true

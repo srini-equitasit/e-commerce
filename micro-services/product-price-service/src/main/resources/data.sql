@@ -1,4 +1,4 @@
---INSERT INTO product (id, name,description) VALUES (10001, 'iPhone','');
---INSERT INTO product (id, name,description) VALUES (10002, 'Motorola','');
---INSERT INTO product (id, name,description) VALUES (10003, 'Samsung','');
---INSERT INTO product (id, name,description) VALUES (10004, 'Nokia','');
+INSERT INTO product_price (id, price,product_id) VALUES (20001, 800,10001);
+INSERT INTO product_price (id, price,product_id) VALUES (20002, 400,10002);
+INSERT INTO product_price (id, price,product_id) VALUES (20003, 500,10003);
+INSERT INTO product_price (id, price,product_id) VALUES (20004, 450,10004);

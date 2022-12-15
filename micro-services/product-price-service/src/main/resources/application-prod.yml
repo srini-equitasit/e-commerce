@@ -1,8 +1,8 @@
 server:
-  port: 9081
+  port: 9082
 spring:
   application:
-    name: product-service
+    name: product-price-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${db_pwd}
@@ -21,6 +21,6 @@ springdoc:
 #actuator
 management:
   endpoints:
-    web.exposure.include: *
+    web.exposure.include: "*"
   endpoint:
     shutdown.enabled: true

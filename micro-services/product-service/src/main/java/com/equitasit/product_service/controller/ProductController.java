@@ -1,7 +1,6 @@
 package com.equitasit.product_service.controller;
 
 import com.equitasit.product_service.dto.ProductDTO;
-import com.equitasit.product_service.dto.StatusDTO;
 import com.equitasit.product_service.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
