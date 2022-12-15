@@ -5,6 +5,7 @@ import com.equitasit.product_service.dto.ProductPriceDTO;
 import com.equitasit.product_service.dto.ProductSellerDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -34,15 +35,37 @@ public class ProductDataRestService {
     }
 
     public ProductPriceDTO getProductPrice(final Integer productId) {
+        CircuitBreaker circuitBreaker = getCircuitBreaker("productPrice");
 
-        return cbFactory.create("productPrice").run(() -> invokeProductPrice(productId), this::productPriceFallback);
+        return circuitBreaker.run(() -> invokeProductPrice(productId), this::productPriceFallback);
+    }
+
+    public ProductPriceDTO getProductPrice1(final Integer productId) {
+
+
+        return invokeProductPrice(productId);
     }
 
     public List<ProductSellerDTO> getSellersInfo(final Integer productId) {
-        return cbFactory.create("productSeller").run(() -> {
+        CircuitBreaker circuitBreaker = getCircuitBreaker("productPrice");
+        return circuitBreaker.run(() -> {
             return this.invokeSellersInfo(productId);
         }, this::productSellerFallback);
     }
+
+    public List<ProductSellerDTO> getSellersInfo1(final Integer productId) {
+
+        return this.invokeSellersInfo(productId);
+
+    }
+
+    private CircuitBreaker getCircuitBreaker(String name) {
+
+        CircuitBreaker circuitBreaker = cbFactory.create("productPrice");
+
+        return circuitBreaker;
+    }
+
 
     private ProductPriceDTO invokeProductPrice(final Integer productId) {
         log.debug("enter");

@@ -15,7 +15,7 @@ import java.time.Duration;
 
 
 @Configuration
-public class ProductConfig {
+public class ProductServiceConfig {
 
     @Bean
     public ModelMapper modelMapper() {
@@ -24,7 +24,10 @@ public class ProductConfig {
 
     @Bean
     public RestTemplate restTemplate() {
-        return new RestTemplateBuilder().build();
+        return new RestTemplateBuilder()
+                .setConnectTimeout(Duration.ofSeconds(5))
+                .setReadTimeout(Duration.ofSeconds(3))
+                .build();
     }
 
     @Bean

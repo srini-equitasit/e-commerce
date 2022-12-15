@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("productPrice")
@@ -49,15 +51,7 @@ public class ProductPriceController {
         return ResponseEntity.ok(productPriceDTO);
     }
 
-    @GetMapping("product/{id}")
-    public ResponseEntity getPriceForProduct(@PathVariable("id") Integer productId) {
-        log.debug("enter");
-        log.info("getting product price info for product id {}", productId);
-        ProductPriceDTO productPriceDTO = productPriceService.getProductPriceForProdId(productId);
-        log.info("product price info {}", productPriceDTO);
-        log.debug("exit");
-        return productPriceDTO != null ? ResponseEntity.ok(productPriceDTO) : ResponseEntity.noContent().build();
-    }
+
 
     @DeleteMapping("{id}")
     public ResponseEntity remove(@PathVariable("id") Integer productPriceId) {
@@ -81,5 +75,16 @@ public class ProductPriceController {
         log.info("product price size {}", productPriceDTOList.size());
         log.debug("exit");
         return ResponseEntity.ok(productPriceDTOList);
+    }
+
+    @GetMapping("product/{id}")
+    public ResponseEntity getPriceForProduct(@PathVariable("id") Integer productId) throws Exception{
+        log.debug("enter");
+        log.info("getting product price info for product id {}", productId);
+
+        ProductPriceDTO productPriceDTO = productPriceService.getProductPriceForProdId(productId);
+        log.info("product price info {}", productPriceDTO);
+        log.debug("exit");
+        return productPriceDTO != null ? ResponseEntity.ok(productPriceDTO) : ResponseEntity.noContent().build();
     }
 }
