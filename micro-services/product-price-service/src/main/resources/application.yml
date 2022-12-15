@@ -1,0 +1,14 @@
+server:
+ port: 9082
+spring:
+  application:
+   name: product-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${db_pwd}
+    url: ${db_url}
+    username: ${db_user}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
