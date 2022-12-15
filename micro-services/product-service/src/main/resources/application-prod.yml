@@ -1,0 +1,26 @@
+server:
+  port: 9081
+spring:
+  application:
+    name: product-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${db_pwd}
+    url: ${db_url}
+    username: ${db_user}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+#open docs
+springdoc:
+  api-docs:
+    path: /api-docs
+
+#actuator
+management:
+  endpoints:
+    web.exposure.include: *
+  endpoint:
+    shutdown.enabled: true
