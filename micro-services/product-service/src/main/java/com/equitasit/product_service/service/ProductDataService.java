@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductDataService {
 
     @Autowired
-    private ProductDataRestService productDataRestService;
+    private ProductDataResilienceRestService productDataResilienceRestService;
     @Autowired
     private ProductService productService;
 
@@ -25,9 +25,9 @@ public class ProductDataService {
 
         ProductDTO productDTO = productService.get(prodId);
 
-        ProductPriceDTO productPriceDTO = productDataRestService.getProductPrice(prodId);
+        ProductPriceDTO productPriceDTO = productDataResilienceRestService.getProductPrice(prodId);
 
-        List<ProductSellerDTO> productSellerDTOList = productDataRestService.getSellersInfo(prodId);
+        List<ProductSellerDTO> productSellerDTOList = productDataResilienceRestService.getSellersInfo(prodId);
 
         productDataDTO.setProduct(productDTO);
 
