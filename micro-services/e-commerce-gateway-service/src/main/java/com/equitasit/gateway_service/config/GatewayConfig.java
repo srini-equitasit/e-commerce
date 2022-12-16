@@ -25,6 +25,9 @@ public class GatewayConfig {
                 .route(p -> p.path("/productSeller/**")
                         .filters(rw -> rw.rewritePath("/productSeller/(?<segment>.*)", "/productSeller/${segment}"))
                         .uri(ecommerceAppConfig.getSellerUrl()))
+                .route(p -> p.path("/products/**")
+                        .filters(rw -> rw.rewritePath("/products/(?<segment>.*)", "/products/${segment}"))
+                        .uri(ecommerceAppConfig.getProductUrl()))
                 .build();
     }
 }

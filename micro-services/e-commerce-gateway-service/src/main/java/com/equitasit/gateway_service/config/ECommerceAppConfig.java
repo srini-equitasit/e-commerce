@@ -16,4 +16,6 @@ public class ECommerceAppConfig {
     private String priceUrl;
 
     private String sellerUrl;
+
+    private String productUrl;
 }

@@ -16,7 +16,8 @@ logging:
     org:
       springframework:
         cloud:
-          gateway: TRACE
+          gateway: INFO
+#          gateway: TRACE
 
 
 #open docs
@@ -34,3 +35,4 @@ product:
   app:
     priceUrl: ${price_url}
     sellerUrl: ${seller_url}
+    productUrl: ${product_url}
