@@ -25,5 +25,8 @@ public class Product {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "img_url", length = 3000)
+    private String imgUrl;
+
 
 }
