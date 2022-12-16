@@ -1,0 +1,36 @@
+server:
+  port: 9080
+spring:
+  application:
+    name: e-commerce-gateway-service
+  cloud:
+    gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+
+
+#open docs
+springdoc:
+  api-docs:
+    path: /api-docs
+
+#actuator
+management:
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    shutdown.enabled:
+product:
+  app:
+    priceUrl: ${price_url}
+    sellerUrl: ${seller_url}

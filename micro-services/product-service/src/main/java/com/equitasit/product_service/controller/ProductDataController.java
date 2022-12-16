@@ -21,7 +21,7 @@ public class ProductDataController {
     private ProductDataService productDataService;
 
     @GetMapping("data/{id}")
-    public ResponseEntity get(@PathVariable("id") Integer productId) {
+    public ResponseEntity get(@PathVariable("id") Integer productId) throws Exception{
         log.debug("enter");
         log.info("getting product data for id {}", productId);
         ProductDataDTO productDataDTO = productDataService.getProductData(productId);
