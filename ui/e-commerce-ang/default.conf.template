@@ -10,7 +10,7 @@ server {
   }
 
   location /hello {
-    proxy_pass ${helloApiUrl};
+    proxy_pass ${e-commerce-gatway-api};
   }
 
 
