@@ -14,7 +14,7 @@
     <groupId>com.equitasit</groupId>
     <artifactId>e-commerce-gateway-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>product-service</name>
+    <name>e-commerce-gateway-service</name>
     <description>e-commerce-gateway-service</description>
 
     <properties>
