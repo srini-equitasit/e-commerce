@@ -49,11 +49,15 @@ public class GatewayRoutesConfig {
             if (urlToPartMap.containsKey(urlStr)) {
                 part = urlToPartMap.get(urlStr);
             } else {
+
                 log.info("urlStr {} ", urlStr);
                 URL url = new URL(urlStr);
+
                 log.info("url {} ", url);
                 part = "/" + url.getPath().split("/")[1] + "/${segment}";
+
                 log.info("part {} ", part);
+
                 urlToPartMap.put(urlStr, part);
             }
         } catch (Exception e) {
