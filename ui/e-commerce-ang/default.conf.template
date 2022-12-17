@@ -9,8 +9,14 @@ server {
     index index.html index.htm;
   }
 
-  location /hello {
-    proxy_pass ${e-commerce-gatway-api};
+  location /products/ {
+    proxy_pass ${product_api_url};
+  }
+  location /price/ {
+    proxy_pass ${price_api_url};
+  }
+  location /seller/ {
+    proxy_pass ${seller_api_url};
   }
 
 
