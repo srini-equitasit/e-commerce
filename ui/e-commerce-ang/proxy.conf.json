@@ -1,0 +1,26 @@
+{
+  "/products/": {
+    "target": "http://localhost:9080/products",
+    "secure": false,
+    "pathRewrite": {
+      "^/products/": ""
+    },
+    "logLevel": "debug"
+  },
+  "/price/": {
+    "target": "http://localhost:9080/price",
+    "secure": false,
+    "pathRewrite": {
+      "^/price/": ""
+    },
+    "logLevel": "debug"
+  },
+  "/seller/": {
+    "target": "http://localhost:9080/seller",
+    "secure": false,
+    "pathRewrite": {
+      "^/seller/": ""
+    },
+    "logLevel": "debug"
+  }
+}

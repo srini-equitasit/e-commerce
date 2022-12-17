@@ -5,6 +5,7 @@ import { SellersComponent } from './sellers/sellers.component';
 import { PriceComponent } from './price/price.component';
 import {RouterModule, Routes} from "@angular/router";
 import {MaterialProductModule} from "../material.product.module";
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MaterialProductModule,
+    HttpClientModule,
     [RouterModule.forChild(routes)]
   ]
 })

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ProductService} from "../service/product.service";
+import {ProductPrice} from "../model/product-price";
 
 @Component({
   selector: 'app-price',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PriceComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  productId?: number;
+
+  productPrice?: ProductPrice;
+
+  constructor(private productService: ProductService) {
+  }
 
   ngOnInit(): void {
+    const obs = this.productService.getPrice(this.productId);
+    obs.subscribe(data => {
+      this.productPrice = data;
+    })
   }
 
 }

@@ -1,1 +1,17 @@
-<p>sellers works!</p>
+<!--<mat-chip-list>-->
+
+<!--  <mat-chip *ngFor="let seller of sellers">-->
+<!--    {{seller.name}}-->
+<!--  </mat-chip>-->
+
+<!--</mat-chip-list>-->
+
+<p>
+
+  <button mat-fab color="primary"
+          [matTooltip]="getSellerNames()"
+          [matBadge]="sellers?.length" matBadgePosition="after" matBadgeColor="accent">
+    Sellers
+  </button>
+</p>
+
