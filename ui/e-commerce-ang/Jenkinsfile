@@ -80,7 +80,7 @@ pipeline {
 
                     sh "docker image rm  ${IMAGE_REPO_NAME}:${IMAGE_TAG_VERSION}"
 
-                    sh "docker image rm  ${IMAGE_TAG_VERSION}-STAGE"
+                    sh "docker system prune -f"
                 }
             }
         }
