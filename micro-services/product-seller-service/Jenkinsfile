@@ -51,6 +51,13 @@ pipeline {
                 }
             }
         }
+        stage('Create Repository if not exist') {
+            steps {
+                script {
+                    sh "aws ecr describe-repositories --repository-names ${IMAGE_REPO_NAME} || aws ecr create-repository --repository-name ${IMAGE_REPO_NAME}"
+                }
+            }
+        }
 
         // Uploading Docker images into AWS ECR
         stage('Pushing to ECR') {
