@@ -1,4 +1,4 @@
-def project_folder='hello-angular-ui'
+def project_folder='ui/e-commerce-ang'
 pipeline {
   agent any
   environment {

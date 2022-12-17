@@ -1,4 +1,4 @@
-def project_folder = 'spring-boot-hello'
+def project_folder = 'micro-services/e-commerce-gateway-service'
 pipeline {
     agent any
     environment {
