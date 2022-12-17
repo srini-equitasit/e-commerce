@@ -2,6 +2,7 @@
   max-width: 350px;
   height: 330px;
 }
+
 .example-header-image {
 
 }
@@ -10,12 +11,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+ 
 }
 
 .prod-con > div {
   margin: 10px;
 }
-img{
-  width: 75px;
-  height: 75px;
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.desc {
+  height: 150px;
+  padding-top: 30px;
 }
