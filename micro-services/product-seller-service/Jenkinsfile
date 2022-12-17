@@ -5,8 +5,8 @@ pipeline {
         AWS_ACCOUNT_ID = "337901474843"
         AWS_DEFAULT_REGION = "us-east-1"
         IMAGE_REPO_NAME = "product-seller-service"
-        IMAGE_TAG_LATEST = "product-seller-service-latest"
-        IMAGE_TAG_VERSION = "product-seller-service-${env.BUILD_ID}"
+        IMAGE_TAG_LATEST = "latest"
+        IMAGE_TAG_VERSION = "${env.BUILD_ID}"
         // IMAGE_TAG="spring-boot-hello_${env.BUILD_ID}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }

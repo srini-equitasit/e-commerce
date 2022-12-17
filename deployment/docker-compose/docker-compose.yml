@@ -47,7 +47,7 @@ services:
   e-commerce-ang-ui-service:
     depends_on:
       - e-commerce-gateway-service
-    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang:e-commerce-ang-latest
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang:latest
     environment:
       price_api_url: http://e-commerce-gateway-service:9080/price
       seller_api_url: http://e-commerce-gateway-service:9080/seller
