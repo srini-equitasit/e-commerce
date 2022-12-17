@@ -6,8 +6,8 @@ pipeline {
       AWS_DEFAULT_REGION="us-east-1"
       IMAGE_REPO_NAME="e-commerce-ang"
       IMAGE_TAG="e-commerce-ang"
-      IMAGE_TAG_LATEST="e-commerce-ang-latest"
-      IMAGE_TAG_VERSION="e-commerce-ang-${env.BUILD_ID}"
+      IMAGE_TAG_LATEST="latest"
+      IMAGE_TAG_VERSION="${env.BUILD_ID}"
       // IMAGE_TAG="emp-ui-app_${env.BUILD_ID}"
       REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
   }
