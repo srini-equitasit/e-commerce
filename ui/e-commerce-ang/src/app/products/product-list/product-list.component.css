@@ -28,3 +28,10 @@ img {
   height: 150px;
   padding-top: 30px;
 }
+
+.seller-info {
+  display: flex;
+  align-items: end;
+}
+
+
