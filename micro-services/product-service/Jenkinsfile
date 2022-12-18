@@ -1,4 +1,4 @@
-def project_folder = 'micro-services/e-commerce-gateway-service'
+def project_folder = 'micro-services/product-service'
 pipeline {
     agent any
     environment {
