@@ -1,0 +1,5 @@
+apiVersion: v2
+name: e-commerce
+description: A Helm chart for e-commerce Microservices applications
+version: 0.1.0
+appVersion: 1.0.0

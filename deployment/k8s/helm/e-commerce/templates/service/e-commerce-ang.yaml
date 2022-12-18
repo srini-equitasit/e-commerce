@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: e-commerce-ang
+#   namespace: eks-example
+  labels:
+    app: e-commerce-ang
+spec:
+   type: NodePort
+  ports:
+    - protocol: TCP
+      # nodePort: 30101
+      port: 80
+      targetPort: 80
+  selector:
+    app: e-commerce-ang

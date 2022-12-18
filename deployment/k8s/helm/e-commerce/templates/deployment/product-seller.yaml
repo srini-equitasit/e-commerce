@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-seller
+  # namespace: eks-example
+  labels:
+    app: product-seller
+  annotations:
+    # Container Image Automated Updates
+    flux.weave.works/automated: "true"
+    # do not apply this manifest on the cluster
+    #flux.weave.works/ignore: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-seller
+  template:
+    metadata:
+      labels:
+        app: product-seller
+    spec:
+      containers:
+      - name: product-seller
+        image: {{ .Values.product-seller.image }}:{{ .Values.version }}
+        # imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9083
+          name: http
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: actuator/health
+            port: http
+        readinessProbe:
+          httpGet:
+            path: actuator/health
+            port: http
