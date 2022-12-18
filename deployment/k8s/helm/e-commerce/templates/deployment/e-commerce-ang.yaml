@@ -31,9 +31,9 @@ spec:
           protocol: TCP
         livenessProbe:
           httpGet:
-            path: actuator/health
+            path: /
             port: http
         readinessProbe:
           httpGet:
-            path: actuator/health
+            path: /
             port: http
