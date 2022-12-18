@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-commerce-gateway
+  # namespace: eks-example
+  labels:
+    app: e-commerce-gateway
+  annotations:
+    # Container Image Automated Updates
+    flux.weave.works/automated: "true"
+    # do not apply this manifest on the cluster
+    #flux.weave.works/ignore: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e-commerce-gateway
+  template:
+    metadata:
+      labels:
+        app: e-commerce-gateway
+    spec:
+      containers:
+      - name: e-commerce-gateway
+        image: {{ .Values.e-commerce-gateway.image }}:{{ .Values.version }}
+        env: 
+        - name: price_url
+          valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-configmap
+              key: price_url        
+        - name: seller_url
+          valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-configmap
+              key: seller_url
+        - name: product_url
+          valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-configmap
+              key: product_url                                    
+        # imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+          name: http
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: actuator/health
+            port: http
+        readinessProbe:
+          httpGet:
+            path: actuator/health
+            port: http
