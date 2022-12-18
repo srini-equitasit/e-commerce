@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product
+  name: Product
   # namespace: eks-example
   labels:
     app: product
@@ -14,15 +14,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: product
+      app: Product
   template:
     metadata:
       labels:
-        app: product
+        app: Product
     spec:
       containers:
-      - name: product
-        image: {{ .Values.product.image }}:{{ .Values.version }}
+      - name: Product
+        image: {{ .Values.Product.image }}:{{ .Values.version }}
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:

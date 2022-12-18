@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product_seller
+  name: ProductSeller
   # namespace: eks-example
   labels:
-    app: product_seller
+    app: ProductSeller
   annotations:
     # Container Image Automated Updates
     flux.weave.works/automated: "true"
@@ -14,15 +14,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: product_seller
+      app: ProductSeller
   template:
     metadata:
       labels:
-        app: product_seller
+        app: ProductSeller
     spec:
       containers:
-      - name: product_seller
-        image: {{ .Values.product_seller.image }}:{{ .Values.version }}
+      - name: ProductSeller
+        image: {{ .Values.ProductSeller.image }}:{{ .Values.version }}
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
