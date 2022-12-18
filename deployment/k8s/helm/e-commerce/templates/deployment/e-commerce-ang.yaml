@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product
+  name: e-commerce-ang
   labels:
-    app: product
+    app: e-commerce-ang
 spec:
   replicas: 1
   selector:
