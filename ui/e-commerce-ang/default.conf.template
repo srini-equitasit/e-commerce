@@ -9,15 +9,11 @@ server {
     index index.html index.htm;
   }
 
-  location /products/ {
-    proxy_pass ${product_api_url};
+  location /api/ {
+    rewrite /api/(.*) /$1  break;
+    proxy_pass ${api_gateway_url};
   }
-  location /price/ {
-    proxy_pass ${price_api_url};
-  }
-  location /seller/ {
-    proxy_pass ${seller_api_url};
-  }
+
 
 
   error_page 500 502 503 504 /50x.html;

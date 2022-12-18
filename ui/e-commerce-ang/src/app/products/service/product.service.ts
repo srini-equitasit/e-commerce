@@ -22,9 +22,9 @@ export class ProductService {
   }
 
   getPrice(productId?: number) {
-    return this.http.get<ProductPrice>(environment.price_url + productId);
+    return this.http.get<ProductPrice>(environment.price_url + `/${productId}`);
   }
   getSellers(productId?: number) {
-    return this.http.get<ProductSeller[]>(environment.seller_url + productId);
+    return this.http.get<ProductSeller[]>(environment.seller_url + `/${productId}`);
   }
 }

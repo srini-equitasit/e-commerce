@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  products_url: "/products/",
-  price_url: "/price/product/",
-  seller_url: "/seller/product/"
+  products_url: "/api/products",
+  price_url: "/api/price/product",
+  seller_url: "/api/seller/product"
 };
