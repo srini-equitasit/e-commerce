@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: product-seller
-        image: {{ .Values.product-seller.image }}:{{ .Values.version }}
+        image: {{ .Values.product_seller.image }}:{{ .Values.version }}
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:

@@ -22,22 +22,22 @@ spec:
     spec:
       containers:
       - name: e-commerce-gateway
-        image: {{ .Values.e-commerce-gateway.image }}:{{ .Values.version }}
+        image: {{ .Values.e_commerce_gateway.image }}:{{ .Values.version }}
         env: 
         - name: price_url
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
+              name: e_commerce_configmap
               key: price_url        
         - name: seller_url
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
+              name: e_commerce_configmap
               key: seller_url
         - name: product_url
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
+              name: e_commerce_configmap
               key: product_url                                    
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
