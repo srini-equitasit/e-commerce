@@ -58,7 +58,7 @@ services:
       seller_api_url: http://e-commerce-gateway-service:9080/seller
       product_api_url: http://e-commerce-gateway-service:9080/products
     ports:
-      - 4200:80
+      - 80:80
     networks:
       - e-commerce-network
     # restart: on-failure
