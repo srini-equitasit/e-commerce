@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: e_commerce_configmap
+  name: e-commerce-configmap
 data:
-  api_gateway_url: http://e-commerce-gateway-service:9080/
-  price_url: http://product-price-service:9082/productPrice/product
-  seller_url: http://product-seller-service:9083/productSeller/product
-  product_url: http://product-service:9081/products
+  apigatewayUrl: http://e-commerce-gateway-service:9080/
+  priceUrl: http://product-price-service:9082/productPrice/product
+  sellerUrl: http://product-seller-service:9083/productSeller/product
+  productUrl: http://product-service:9081/products

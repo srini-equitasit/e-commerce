@@ -27,18 +27,18 @@ spec:
         - name: price_url
           valueFrom:
             configMapKeyRef: 
-              name: e_commerce_configmap
-              key: price_url        
+              name: e-commerce-configmap
+              key: priceUrl        
         - name: seller_url
           valueFrom:
             configMapKeyRef: 
-              name: e_commerce_configmap
-              key: seller_url
+              name: e-commerce-configmap
+              key: sellerUrl
         - name: product_url
           valueFrom:
             configMapKeyRef: 
-              name: e_commerce_configmap
-              key: product_url                                    
+              name: e-commerce-configmap
+              key: productUrl                                    
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:

@@ -27,8 +27,8 @@ spec:
         - name: api_gateway_url
           valueFrom:
             configMapKeyRef: 
-              name: e_commerce_configmap
-              key: api_gateway_url         
+              name: e-commerce-configmap
+              key: apiGatewayUrl         
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
