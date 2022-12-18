@@ -1,0 +1,15 @@
+# Release-wide Values
+replicas: 1
+version: 'latest'
+
+# Service Specific Values
+e-commerce-gateway:
+  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
+product-price:
+  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
+product-seller:
+  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
+product:
+  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service  
+e-commerce-ang:
+  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang 
