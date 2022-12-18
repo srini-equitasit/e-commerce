@@ -3,13 +3,13 @@ replicas: 1
 version: 'latest'
 
 # Service Specific Values
-e-commerce-gateway:
+e_commerce_gateway:
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
-product-price:
+product_price:
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
-product-seller:
+product_seller:
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
 product:
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service  
-e-commerce-ang:
+e_commerce_ang:
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang 
