@@ -1,4 +1,8 @@
+server:
+  port: 9082
 spring:
+  application:
+    name: product-price-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${db_pwd}
@@ -8,3 +12,15 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+#open docs
+springdoc:
+  api-docs:
+    path: /api-docs
+
+#actuator
+management:
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    shutdown.enabled: true

@@ -14,20 +14,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: e-commerce-ang
+      app: EcommerceAng
   template:
     metadata:
       labels:
-        app: e-commerce-ang
+        app: EcommerceAng
     spec:
       containers:
-      - name: e-commerce-ang
-        image: {{ .Values.e-commerce-ang.image }}:{{ .Values.version }}
+      - name: EcommerceAng
+        image: {{ .Values.EcommerceAng.image }}:{{ .Values.version }}
         env: 
         - name: api_gateway_url
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
+              name: EcommerceConfigmap
               key: api_gateway_url         
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always

@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: product-price
+  name: ProductPrice
 #   namespace: eks-example
   labels:
-    app: product-price
+    app: ProductPrice
 spec:
 #   type: LoadBalancer
   ports:
@@ -13,4 +13,4 @@ spec:
       port: 9082
       targetPort: 9082
   selector:
-    app: product-price
+    app: ProductPrice
