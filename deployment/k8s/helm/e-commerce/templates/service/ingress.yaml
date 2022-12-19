@@ -12,8 +12,11 @@ spec:
         paths:
         {{- range .paths }}
           - path: {{ .path }}
+            pathType: Prefix
             backend:
-              serviceName: {{ .backend.serviceName }}
-              servicePort: {{ .backend.servicePort }}
+              service: 
+                name: {{ .backend.serviceName }}
+                port:
+                  number: {{ .backend.servicePort }}
         {{- end }}
   {{- end }}
