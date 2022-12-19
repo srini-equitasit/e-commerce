@@ -49,6 +49,6 @@ spec:
           - containerPort: 9200
 
       volumes:
-        - name: {{ .Values.elastic_search.name }} # Obtaining 'volume' from PVC
+        - name: {{ .Values.elastic_search.name }}
           persistentVolumeClaim:
             claimName: {{ .Values.elastic_search.name }} 
