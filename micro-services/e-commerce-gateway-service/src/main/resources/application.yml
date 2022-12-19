@@ -16,8 +16,8 @@ logging:
     org:
       springframework:
         cloud:
-#          gateway: INFO
-          gateway: TRACE
+          gateway: INFO
+#          gateway: TRACE
 
 
 #open docs
