@@ -12,4 +12,17 @@ product_seller:
 product:
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service  
 e_commerce_ang:
-  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang 
+  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
+
+ingress:
+  name: ingress-service
+  replicaCount: 1
+  annotations: 
+    class: nginx
+  hosts:
+    - host: chart-example.local
+      paths: 
+        - path: /
+          backend:
+            serviceName: e-commerce-ang
+            servicePort: 8080
