@@ -20,8 +20,7 @@ ingress:
   annotations: 
     class: nginx
   hosts:
-    - host: chart-example.local
-      paths: 
+    - paths: 
         - path: /
           backend:
             serviceName: e-commerce-ang
