@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.product_price.name }}
-  # namespace: eks-example
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Values.product_price.name }}
   annotations:
@@ -22,7 +22,6 @@ spec:
     spec:
       containers:
       - name: {{ .Values.product_price.name }}
-        namespace: {{ .Values.namespace }}
         image: {{ .Values.product_price.image }}:{{ .Values.version }}
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
