@@ -8,4 +8,4 @@ data:
   fluentEsScheme: http
   fluentEsUser: elastic
   fluentEsPwd: changeme
-  kibanaEsUrls: '["http://elastic-search:9200"]'
+  # kibanaEsUrls: '["http://elastic-search:9200"]'

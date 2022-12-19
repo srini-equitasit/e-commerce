@@ -20,9 +20,6 @@ spec:
           image: {{ .Values.kibana.image }} 
           env: 
             - name: ELASTICSEARCH_HOSTS
-              valueFrom:
-                configMapKeyRef: 
-                  name: e-commerce-logging-map
-                  key: kibanaEsUrls 
+              value: '["http://elastic-search:9200"]'
           ports:
           - containerPort: 5601
