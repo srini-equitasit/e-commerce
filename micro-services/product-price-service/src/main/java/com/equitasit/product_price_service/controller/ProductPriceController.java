@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RestController
-@RequestMapping("productPrice")
+@RequestMapping("price")
 @Slf4j
 public class ProductPriceController {
 

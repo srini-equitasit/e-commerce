@@ -28,44 +28,15 @@ public class GatewayRoutesConfig {
         RouteLocator routeLocator = builder.routes()
                 .route(p -> p
                         .path("/price/**")
-                        .filters(rw -> rw.rewritePath("/price/(?<segment>.*)", getPath(ecommerceAppConfig.getPriceUrl())))
                         .uri(ecommerceAppConfig.getPriceUrl()))
                 .route(p -> p.path("/seller/**")
-                        .filters(rw -> rw.rewritePath("/seller/(?<segment>.*)", getPath(ecommerceAppConfig.getSellerUrl())))
                         .uri(ecommerceAppConfig.getSellerUrl()))
 
-                .route(p -> p.path("/products/**")
-                        .filters(rw -> rw.rewritePath("/products/(?<segment>.*)", getPath(ecommerceAppConfig.getProductUrl())))
+                .route(p -> p.path("/product/**")
                         .uri(ecommerceAppConfig.getProductUrl()))
                 .build();
         log.info("routes configure end , routeLocator {} ", routeLocator);
         return routeLocator;
-    }
-
-    private String getPath(String urlStr) {
-        String part = null;
-        log.debug("enter");
-        try {
-            if (urlToPartMap.containsKey(urlStr)) {
-                part = urlToPartMap.get(urlStr);
-            } else {
-
-                log.info("urlStr {} ", urlStr);
-                URL url = new URL(urlStr);
-
-                log.info("url {} ", url);
-                part = "/" + url.getPath().split("/")[1] + "/${segment}";
-
-                log.info("part {} ", part);
-
-                urlToPartMap.put(urlStr, part);
-            }
-        } catch (Exception e) {
-
-        }
-        log.debug("part  {} ", part);
-        log.debug("exit");
-        return part;
     }
 
 
