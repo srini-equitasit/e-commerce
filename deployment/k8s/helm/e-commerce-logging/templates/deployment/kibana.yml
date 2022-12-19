@@ -17,12 +17,12 @@ spec:
     spec:
       containers:
         - name: {{ .Values.kibana.name }} 
-          image: docker.elastic.co/kibana/kibana:7.6.2
+          image: {{ .Values.kibana.image }} 
           env: 
             - name: ELASTICSEARCH_HOSTS
-           valueFrom:
-            configMapKeyRef: 
-              name: e-commerce-logging-map
-              key: kibanaEsUrls 
+              valueFrom:
+                configMapKeyRef: 
+                  name: e-commerce-logging-map
+                  key: kibanaEsUrls 
           ports:
           - containerPort: 5601
