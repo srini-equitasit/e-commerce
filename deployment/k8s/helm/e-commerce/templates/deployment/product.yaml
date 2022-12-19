@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.product.name }}
-  # namespace: eks-example
+  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Values.product.name }}
   annotations:

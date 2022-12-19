@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.e_commerce_gateway.name }}
+  namespace: {{ .Values.namespace }}
   # namespace: eks-example
   labels:
     app: {{ .Values.e_commerce_gateway.name }}

@@ -1,6 +1,7 @@
 # Release-wide Values
 replicas: 1
 version: 'latest'
+namespace: ecommerce
 
 # Service Specific Values
 e_commerce_gateway:
