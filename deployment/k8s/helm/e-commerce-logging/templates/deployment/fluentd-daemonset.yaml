@@ -29,27 +29,27 @@ spec:
          - name:  FLUENT_ELASTICSEARCH_HOST
            valueFrom:
             configMapKeyRef: 
-              name: e-commerce-logging-map
+              name: e-commerce-logging-map.logging
               key: fluentEsHost 
          - name:  FLUENT_ELASTICSEARCH_PORT
            valueFrom:
             configMapKeyRef: 
-              name: e-commerce-logging-map
+              name: e-commerce-logging-map.logging
               key: fluentEsPort 
          - name: FLUENT_ELASTICSEARCH_SCHEME
            valueFrom:
             configMapKeyRef: 
-              name: e-commerce-logging-map
+              name: e-commerce-logging-map.logging
               key: fluentEsScheme 
          - name: FLUENT_ELASTICSEARCH_USER
            valueFrom:
             configMapKeyRef: 
-              name: e-commerce-logging-map
+              name: e-commerce-logging-map.logging
               key: fluentEsUser 
          - name: FLUENT_ELASTICSEARCH_PASSWORD
            valueFrom:
             configMapKeyRef: 
-              name: e-commerce-logging-map
+              name: e-commerce-logging-map.logging
               key: fluentEsPwd 
 
        volumeMounts:
