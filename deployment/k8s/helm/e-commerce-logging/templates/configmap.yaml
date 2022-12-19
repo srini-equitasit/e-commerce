@@ -1,7 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
+namespace: {{ .Values.namespace }} 
 metadata:
   name: e-commerce-logging-map
+  namespace: {{ .Values.namespace }} 
 data:
   fluentEsHost: elastic-search.logging
   fluentEsPort: '9200'
