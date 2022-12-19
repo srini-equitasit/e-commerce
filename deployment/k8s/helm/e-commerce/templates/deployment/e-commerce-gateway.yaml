@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: e-commerce-gateway
+  name: {{ .Values.e_commerce_gateway.name }}
   # namespace: eks-example
   labels:
-    app: e-commerce-gateway
+    app: {{ .Values.e_commerce_gateway.name }}
   annotations:
     # Container Image Automated Updates
     flux.weave.works/automated: "true"
@@ -14,14 +14,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: e-commerce-gateway
+      app: {{ .Values.e_commerce_gateway.name }}
   template:
     metadata:
       labels:
-        app: e-commerce-gateway
+        app: {{ .Values.e_commerce_gateway.name }}
     spec:
       containers:
-      - name: e-commerce-gateway
+      - name: {{ .Values.e_commerce_gateway.name }}
         image: {{ .Values.e_commerce_gateway.image }}:{{ .Values.version }}
         env: 
         - name: price_url

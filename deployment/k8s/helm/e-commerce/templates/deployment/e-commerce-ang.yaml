@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: e-commerce-ang
+  name: {{ .Values.e_commerce_ang.name }}
   labels:
-    app: e-commerce-ang
+    app: {{ .Values.e_commerce_ang.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: e-commerce-ang
+      app: {{ .Values.e_commerce_ang.name }}
   template:
     metadata:
       labels:
-        app: e-commerce-ang
+        app: {{ .Values.e_commerce_ang.name }}
     spec:
       containers:
-      - name: e-commerce-ang
+      - name: {{ .Values.e_commerce_ang.name }}
         image: {{ .Values.e_commerce_ang.image }}:{{ .Values.version }}
         env: 
         - name: api_gateway_url

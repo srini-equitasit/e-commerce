@@ -4,14 +4,19 @@ version: 'latest'
 
 # Service Specific Values
 e_commerce_gateway:
+  name: e-commerce-gateway
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
 product_price:
+  name: product-price
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
 product_seller:
+  name: product-seller
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
 product:
+  name: product
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service  
 e_commerce_ang:
+  name: e-commerce-ang
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
 
 ingress:
