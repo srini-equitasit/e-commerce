@@ -46,7 +46,7 @@ e_commerce_ang:
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
 
 ingress:
-  name: ingress-service
+  name: e-commerce-ingress-service
   replicaCount: 1
   annotations: 
     class: nginx
