@@ -4,3 +4,8 @@ https://www.developer.com/design/microservices-design-principles/
 
 ## login to docker
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 337901474843.dkr.ecr.us-east-1.amazonaws.com
+
+## helm
+https://www.eksworkshop.com/beginner/060_helm/helm_micro/create_chart/
+
+https://wkrzywiec.medium.com/how-to-deploy-application-on-kubernetes-with-helm-39f545ad33b8
