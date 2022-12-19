@@ -8,4 +8,7 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 ## helm
 https://www.eksworkshop.com/beginner/060_helm/helm_micro/create_chart/
 
+## ingress service
 https://wkrzywiec.medium.com/how-to-deploy-application-on-kubernetes-with-helm-39f545ad33b8
+
+minikube addons enable ingress

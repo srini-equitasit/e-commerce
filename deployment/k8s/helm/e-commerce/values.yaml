@@ -25,4 +25,4 @@ ingress:
         - path: /
           backend:
             serviceName: e-commerce-ang
-            servicePort: 8080
+            servicePort: 80
