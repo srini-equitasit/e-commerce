@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: e-commerce-logging-map
+data:
+  fluentEsHost: elastic-search.logging
+  fluentEsPort: 9200
+  fluentEsScheme: http
+  fluentEsUser: elastic
+  fluentEsPwd: changeme
+  kibanaEsUrls: '["http://elastic-search:9200"]'

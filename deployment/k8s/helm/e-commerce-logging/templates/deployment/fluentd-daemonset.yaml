@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+ name: {{ .Values.fluentd.name }} 
+ namespace: kube-system
+ labels:
+   k8s-app: {{ .Values.fluentd.name }} 
+   version: v1
+spec:
+ selector:
+   matchLabels:
+     k8s-app: {{ .Values.fluentd.name }} 
+     version: v1
+ template:
+   metadata:
+     labels:
+       k8s-app: {{ .Values.fluentd.name }}  # This label will help group your daemonset pods
+       version: v1
+   spec:
+    #  serviceAccount: fluentd
+    #  serviceAccountName: fluentd
+     tolerations:
+     - key: node-role.kubernetes.io/master
+       effect: NoSchedule # This will ensure fluentd collects master logs too
+     containers:
+     - name: {{ .Values.fluentd.name }} 
+       image: {{ .Values.fluentd.image }} 
+       env:
+         - name:  FLUENT_ELASTICSEARCH_HOST
+           valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-logging-map
+              key: fluentEsHost 
+         - name:  FLUENT_ELASTICSEARCH_PORT
+           valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-logging-map
+              key: fluentEsPort 
+         - name: FLUENT_ELASTICSEARCH_SCHEME
+           valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-logging-map
+              key: fluentEsScheme 
+         - name: FLUENT_ELASTICSEARCH_USER
+           valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-logging-map
+              key: fluentEsUser 
+         - name: FLUENT_ELASTICSEARCH_PASSWORD
+           valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-logging-map
+              key: fluentEsPwd 
+
+       volumeMounts:
+       - name: varlog
+         mountPath: /var/log
+       - name: varlibdockercontainers
+         mountPath: /var/lib/docker/containers
+         readOnly: true
+     terminationGracePeriodSeconds: 30
+     volumes:
+     - name: varlog
+       hostPath:
+         path: /var/log
+     - name: varlibdockercontainers
+       hostPath:
+         path: /var/lib/docker/containers

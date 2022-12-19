@@ -1,0 +1,54 @@
+# Define a 'Persistent Volume Claim'(PVC) for elastic-search Storage, dynamically provisioned by cluster
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.elastic_search.name }}  # name of PVC essential for identifying the storage data
+  namespace: {{ .Values.namespace }} 
+  labels:
+    app: {{ .Values.elastic_search.name }} 
+    tier: database
+spec:
+  accessModes:
+    - ReadWriteOnce   #This specifies the mode of the claim that we are trying to create.
+  resources:
+    requests:
+      storage: 3Gi    #This will tell kubernetes about the amount of space we are trying to claim.
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.elastic_search.name }} 
+  namespace: {{ .Values.namespace }} 
+  labels:
+    app: {{ .Values.elastic_search.name }} 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.elastic_search.name }} 
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.elastic_search.name }} 
+    spec:
+      containers:
+        - name: {{ .Values.elastic_search.name }} 
+          image: {{ .Values.elastic_search.image }} 
+          env: 
+            - name: cluster.name
+              value: k8s-elastic-cluster
+            - name: discovery.type
+              value: single-node
+            - name: bootstrap.memory_lock
+              value: "true"
+            - name: ES_JAVA_OPTS
+              value: "-Xms512m -Xmx512m"                             
+      
+          ports:
+          - containerPort: 9200
+
+      volumes:
+        - name: {{ .Values.elastic_search.name }} # Obtaining 'volume' from PVC
+          persistentVolumeClaim:
+            claimName: {{ .Values.elastic_search.name }} 
