@@ -15,4 +15,4 @@ minikube addons enable ingress
 
 add nginx dependecy for helm chart
 
-run minikube tunnel to assign extenal ip
+run "minikube tunnel" to assign extenal ip
