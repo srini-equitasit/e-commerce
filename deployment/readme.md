@@ -12,3 +12,7 @@ https://www.eksworkshop.com/beginner/060_helm/helm_micro/create_chart/
 https://wkrzywiec.medium.com/how-to-deploy-application-on-kubernetes-with-helm-39f545ad33b8
 
 minikube addons enable ingress
+
+add nginx dependecy for helm chart
+
+run minikube tunnel to assign extenal ip
