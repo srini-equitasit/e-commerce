@@ -48,7 +48,8 @@ ingress:
   replicaCount: 1
   annotations: 
     class: nginx
-    rewriteTarget: /$2
+    # rewriteTarget: /$2
+    rewriteTarget: /$1    
   hosts:
     - paths: 
         - path: /elastic-search(/|$)(.*)
