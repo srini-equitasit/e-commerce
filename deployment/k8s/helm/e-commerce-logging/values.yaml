@@ -1,9 +1,10 @@
 # Release-wide Values
 replicas: 1
-version: 'latest'
+version: "latest"
 namespace: logging
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -26,7 +27,7 @@ nodeSelector: {}
 
 tolerations: []
 
-affinity: {}  
+affinity: {}
 
 # Service Specific Values
 fluentd:
@@ -42,29 +43,35 @@ jaeger:
   name: jaeger
   image: jaegertracing/all-in-one:1.40
 
-
 ingress:
-  name: e-commerce-logging-ing-service
-  replicaCount: 1
-  annotations: 
-    class: nginx
-    # rewriteTarget: /$2
-    rewriteTarget: /$1    
-  hosts:
-    - paths: 
-        - path: /elastic-search/.*
-          backend:
-            serviceName: elastic-search
-            servicePort: 9200
-        - path: /kibana/.*
-          backend:
-            serviceName: kibana
-            servicePort: 5601              
-        - path: /jaeger/.*
-          backend:
-            serviceName: jaeger
-            servicePort: 16686 
-        - path: /zipkin/.*
-          backend:
-            serviceName: jaeger
-            servicePort: 9411                                       
+  - name: elastic-search
+    replicaCount: 1
+    annotations:
+      class: nginx
+    hosts:
+      - paths:
+          - path: /elastic-search
+            backend:
+              serviceName: elastic-search
+              servicePort: 9200
+  - name: kibana
+    replicaCount: 1
+    annotations:
+      class: nginx
+    hosts:
+      - paths:
+          - path: /kibana
+            backend:
+              serviceName: kibana
+              servicePort: 5601
+
+  - name: jaeger
+    replicaCount: 1
+    annotations:
+      class: nginx
+    hosts:
+      - paths:
+          - path: /jaeger
+            backend:
+              serviceName: jaeger
+              servicePort: 16686
