@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: product-price-service
+  sleuth:
+    opentracing:
+      enabled: true
+  zipkin:
+    base-url: ${zipkin_url}
   h2:
     console.enabled: true
   datasource:

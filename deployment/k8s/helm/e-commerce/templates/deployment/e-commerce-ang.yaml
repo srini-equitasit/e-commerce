@@ -23,7 +23,12 @@ spec:
           valueFrom:
             configMapKeyRef: 
               name: e-commerce-configmap
-              key: apiGatewayUrl         
+              key: apiGatewayUrl
+        - name: zipkin_url
+          valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-configmap
+              key: zipKinUrl                       
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
