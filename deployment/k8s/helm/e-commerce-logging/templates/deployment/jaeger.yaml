@@ -30,7 +30,14 @@ spec:
             - name: COLLECTOR_ZIPKIN_HOST_PORT
               value: "9411"
             - name: COLLECTOR_OTLP_ENABLED
-              value: "true"              
+              value: "true"
+            - name: SPAN_STORAGE_TYPE
+              value: elasticsearch
+            - name: ES_SERVER_URLS
+              valueFrom:
+                configMapKeyRef: 
+                  name: e-commerce-logging-map
+                  key: esServerUrls                                            
       
           ports:
           

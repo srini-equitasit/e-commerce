@@ -17,3 +17,4 @@ metadata:
   namespace: {{ .Values.namespace }} 
 data:
   kibanaEsUrls: '["http://elastic-search:9200"]'
+  esServerUrls: http://elastic-search:9200
