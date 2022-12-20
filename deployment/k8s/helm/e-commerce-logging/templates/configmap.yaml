@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: e-commerce-logging-map
-  # namespace: {{ .Values.namespace }} 
+  namespace: kube-system 
 data:
   fluentEsHost: elastic-search.logging
   fluentEsPort: '9200'
