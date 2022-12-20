@@ -60,9 +60,9 @@ ingress:
             servicePort: 5601              
         - path: /jaeger
           backend:
-            serviceName: jaeger.logging
+            serviceName: jaeger
             servicePort: 16686 
         - path: /zipkin
           backend:
-            serviceName: jaeger.logging
+            serviceName: jaeger
             servicePort: 9411                                       
