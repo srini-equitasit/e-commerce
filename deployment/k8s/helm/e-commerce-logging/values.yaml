@@ -45,7 +45,7 @@ jaeger:
 
 ingress:
   - name: elastic-search
-    namespace: elastic-search-ing
+    namespace: logging
     replicaCount: 1
     annotations:
       class: nginx
@@ -56,7 +56,7 @@ ingress:
               serviceName: elastic-search
               servicePort: 9200
   - name: kibana
-    namespace: kibana-ing  
+    namespace: logging
     replicaCount: 1
     annotations:
       class: nginx
@@ -68,7 +68,7 @@ ingress:
               servicePort: 5601
 
   - name: jaeger
-    namespace: jaeger-ing  
+    namespace: logging
     replicaCount: 1
     annotations:
       class: nginx
