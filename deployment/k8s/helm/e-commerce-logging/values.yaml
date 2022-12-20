@@ -48,21 +48,22 @@ ingress:
   replicaCount: 1
   annotations: 
     class: nginx
+    rewriteTarget: /$2
   hosts:
     - paths: 
-        - path: /elastic-search
+        - path: /elastic-search(/|$)(.*)
           backend:
             serviceName: elastic-search
             servicePort: 9200
         - path: /kibana
           backend:
-            serviceName: kibana
+            serviceName: kibana(/|$)(.*)
             servicePort: 5601              
         - path: /jaeger
           backend:
-            serviceName: jaeger
+            serviceName: jaeger(/|$)(.*)
             servicePort: 16686 
         - path: /zipkin
           backend:
-            serviceName: jaeger
+            serviceName: jaeger(/|$)(.*)
             servicePort: 9411                                       
