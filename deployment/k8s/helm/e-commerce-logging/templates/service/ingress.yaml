@@ -1,15 +1,16 @@
+  {{- range .Values.ingress }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.ingress.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ .name }}
+  namespace: {{ .namespace }}
   annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.annotations.class }}
+    kubernetes.io/ingress.class: {{ .annotations.class }}
     # nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.annotations.rewriteTarget }}
     # nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-  {{- range .Values.ingress.hosts }}
+  {{- range .hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
@@ -23,3 +24,4 @@ spec:
                   number: {{ .backend.servicePort }}
         {{- end }}
   {{- end }}
+{{- end }}
