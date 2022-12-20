@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.prometheus.name }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port:   '9090'
+  
+spec:
+  selector: 
+    app: {{ .Values.prometheus.name }}
+  type: NodePort  
+  ports:
+    - port: 9090
+      targetPort: 9090 
+      # nodePort: 30000
