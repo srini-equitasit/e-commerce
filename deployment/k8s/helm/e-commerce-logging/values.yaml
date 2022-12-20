@@ -60,5 +60,9 @@ ingress:
             servicePort: 9200 
         - path: /jaeger
           backend:
-            serviceName: kibana
-            servicePort: 5601                           
+            serviceName: jaeger
+            servicePort: 16686 
+        - path: /zipkin
+          backend:
+            serviceName: jaeger
+            servicePort: 9411                                       

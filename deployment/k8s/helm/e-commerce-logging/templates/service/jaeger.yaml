@@ -13,3 +13,6 @@ spec:
       port: 9411
       targetPort: 9411
       # nodePort: 30010
+    - protocol: TCP
+      port: 16686
+      targetPort: 16686      
