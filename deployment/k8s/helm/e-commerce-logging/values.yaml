@@ -55,15 +55,15 @@ ingress:
           backend:
             serviceName: elastic-search
             servicePort: 9200
-        - path: /kibana
+        - path: /kibana(/|$)(.*)
           backend:
-            serviceName: kibana(/|$)(.*)
+            serviceName: kibana
             servicePort: 5601              
-        - path: /jaeger
+        - path: /jaeger(/|$)(.*)
           backend:
-            serviceName: jaeger(/|$)(.*)
+            serviceName: jaeger
             servicePort: 16686 
-        - path: /zipkin
+        - path: /zipkin(/|$)(.*)
           backend:
-            serviceName: jaeger(/|$)(.*)
+            serviceName: jaeger
             servicePort: 9411                                       
