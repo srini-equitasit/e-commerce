@@ -30,32 +30,27 @@ spec:
            valueFrom:
             configMapKeyRef: 
               name: e-commerce-logging-map
-              key: fluentEsHost 
-              namespace: {{ .Values.namespace }} 
+              key: fluentEsHost              
          - name:  FLUENT_ELASTICSEARCH_PORT
            valueFrom:
             configMapKeyRef: 
               name: e-commerce-logging-map
-              key: fluentEsPort 
-              namespace: {{ .Values.namespace }} 
+              key: fluentEsPort
          - name: FLUENT_ELASTICSEARCH_SCHEME
            valueFrom:
             configMapKeyRef: 
               name: e-commerce-logging-map
-              key: fluentEsScheme
               namespace: {{ .Values.namespace }}  
          - name: FLUENT_ELASTICSEARCH_USER
            valueFrom:
             configMapKeyRef: 
               name: e-commerce-logging-map
-              key: fluentEsUser
-              namespace: {{ .Values.namespace }}  
+              key: fluentEsUser 
          - name: FLUENT_ELASTICSEARCH_PASSWORD
            valueFrom:
             configMapKeyRef: 
               name: e-commerce-logging-map
-              key: fluentEsPwd
-              namespace: {{ .Values.namespace }}  
+              key: fluentEsPwd 
 
        volumeMounts:
        - name: varlog
