@@ -7,4 +7,4 @@ data:
   priceUrl: http://product-price:9082/productPrice/product
   sellerUrl: http://product-seller:9083/productSeller/product
   productUrl: http://product:9081/products
-  zipKinUrl: http://jaeger:9411
+  zipKinUrl: http://jaeger.logging:9411
