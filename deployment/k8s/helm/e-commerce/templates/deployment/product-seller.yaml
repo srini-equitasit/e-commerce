@@ -24,6 +24,12 @@ spec:
       containers:
       - name: {{ .Values.product_seller.name }}
         image: {{ .Values.product_seller.image }}:{{ .Values.version }}
+        env:
+          - name: zipkin_url
+            valueFrom:
+              configMapKeyRef: 
+                name: e-commerce-configmap
+                key: zipKinUrl            
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:

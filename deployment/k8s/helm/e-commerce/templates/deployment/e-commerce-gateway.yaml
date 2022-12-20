@@ -39,7 +39,12 @@ spec:
           valueFrom:
             configMapKeyRef: 
               name: e-commerce-configmap
-              key: productUrl                                    
+              key: productUrl
+        - name: zipkin_url
+          valueFrom:
+            configMapKeyRef: 
+              name: e-commerce-configmap
+              key: zipKinUrl                                                      
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:

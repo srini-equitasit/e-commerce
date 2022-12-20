@@ -9,6 +9,12 @@ spring:
         wiretap: true
       httpserver:
         wiretap: true
+  sleuth:
+    opentracing:
+      enabled: true
+  zipkin:
+    base-url: ${zipkin_url}
+
 logging:
   level:
     reactor:
@@ -24,6 +30,7 @@ logging:
 springdoc:
   api-docs:
     path: /api-docs
+
 
 #actuator
 management:
