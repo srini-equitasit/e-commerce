@@ -12,7 +12,9 @@ spec:
     - protocol: TCP
       port: 9411
       targetPort: 9411
+      name: zipkin
       # nodePort: 30010
     - protocol: TCP
       port: 16686
-      targetPort: 16686      
+      targetPort: 16686
+      name: jaeger      
