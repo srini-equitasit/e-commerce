@@ -21,3 +21,6 @@ run "minikube tunnel" to assign extenal ip
 
 ## enable tracing
     https://ryanharrison.co.uk/2021/08/06/distributed-tracing-spring-boot-jaeger.html
+
+## helm debug
+    helm install e-commerece-logging --dry-run --debug .
