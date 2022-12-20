@@ -50,19 +50,19 @@ ingress:
     class: nginx
   hosts:
     - paths: 
-        - path: /jaeger
-          backend:
-            serviceName: jaeger
-            servicePort: 9411
         - path: /elastic-search
           backend:
             serviceName: elastic-search
-            servicePort: 9200 
+            servicePort: 9200
+        - path: /kibana
+          backend:
+            serviceName: kibana
+            servicePort: 5601              
         - path: /jaeger
           backend:
-            serviceName: jaeger
+            serviceName: jaeger.logging
             servicePort: 16686 
         - path: /zipkin
           backend:
-            serviceName: jaeger
+            serviceName: jaeger.logging
             servicePort: 9411                                       

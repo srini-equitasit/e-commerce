@@ -26,7 +26,11 @@ spec:
             - name: bootstrap.memory_lock
               value: "true"
             - name: ES_JAVA_OPTS
-              value: "-Xms512m -Xmx512m"                             
+              value: "-Xms512m -Xmx512m"
+            - name: COLLECTOR_ZIPKIN_HOST_PORT
+              value: "9411"
+            - name: COLLECTOR_OTLP_ENABLED
+              value: "true"              
       
           ports:
           
