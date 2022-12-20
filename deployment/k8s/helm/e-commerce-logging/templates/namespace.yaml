@@ -4,3 +4,25 @@ metadata:
   name: {{ .Values.namespace }}
   labels:
     name: {{ .Values.namespace }}
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: elastic-search-ing
+  labels:
+    name: elastic-search-ing
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: kibana-ing
+  labels:
+    name: kibana-ing
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: jaeger-ing
+  labels:
+    name: jaeger-ing
+---                
