@@ -18,3 +18,5 @@ metadata:
 data:
   kibanaEsUrls: '["http://elastic-search:9200"]'
   esServerUrls: http://elastic-search:9200
+  kibanaServerBasePath: /kibana
+  kibanaServerPublicBaseUrl: ec2-44-204-225-244.compute-1.amazonaws.com/kibana 

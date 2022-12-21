@@ -23,6 +23,18 @@ spec:
               valueFrom:
                 configMapKeyRef: 
                   name: e-commerce-logging-map
-                  key: kibanaEsUrls 
+                  key: kibanaEsUrls
+            - name: SERVER_BASEPATH
+              valueFrom:
+                configMapKeyRef: 
+                  name: e-commerce-logging-map
+                  key: kibanaServerBasePath
+            - name: SERVER_REWRITEBASEPATH
+              value: "true"
+            - name: SERVER_PUBLICBASEURL
+              valueFrom:
+                configMapKeyRef: 
+                  name: e-commerce-logging-map
+                  key: kibanaServerPublicBaseUrl                 
           ports:
           - containerPort: 5601

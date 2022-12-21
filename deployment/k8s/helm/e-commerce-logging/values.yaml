@@ -55,26 +55,12 @@ ingress:
             backend:
               serviceName: elastic-search
               servicePort: 9200
-  - name: kibana
-    namespace: logging
-    replicaCount: 1
-    annotations:
-      class: nginx
-    hosts:
-      - paths:
           - path: /kibana
             backend:
               serviceName: kibana
               servicePort: 5601
-
-  - name: jaeger
-    namespace: logging
-    replicaCount: 1
-    annotations:
-      class: nginx
-    hosts:
-      - paths:
           - path: /jaeger
             backend:
               serviceName: jaeger
-              servicePort: 16686
+              servicePort: 16686                         
+
