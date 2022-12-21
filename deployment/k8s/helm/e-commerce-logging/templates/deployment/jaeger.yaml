@@ -37,7 +37,12 @@ spec:
               valueFrom:
                 configMapKeyRef: 
                   name: e-commerce-logging-map
-                  key: esServerUrls                                            
+                  key: esServerUrls
+            - name: QUERY_BASE_PATH
+              valueFrom:
+                configMapKeyRef: 
+                  name: e-commerce-logging-map
+                  key: jaegerBasePath                                                               
       
           ports:
           
