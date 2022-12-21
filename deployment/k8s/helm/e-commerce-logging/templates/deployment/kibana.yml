@@ -31,10 +31,10 @@ spec:
                   key: kibanaServerBasePath
             - name: SERVER_REWRITEBASEPATH
               value: "true"
-            - name: SERVER_PUBLICBASEURL
-              valueFrom:
-                configMapKeyRef: 
-                  name: e-commerce-logging-map
-                  key: kibanaServerPublicBaseUrl                 
+            # - name: SERVER_PUBLICBASEURL
+            #   valueFrom:
+            #     configMapKeyRef: 
+            #       name: e-commerce-logging-map
+            #       key: kibanaServerPublicBaseUrl                 
           ports:
           - containerPort: 5601
