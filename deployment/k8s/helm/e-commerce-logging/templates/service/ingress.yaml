@@ -11,7 +11,7 @@ metadata:
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/add-base-url: "true"
     # ingress.kubernetes.io/add-base-url: "true"
-    nginx.ingress.kubernetes.io/enable-opentracing: "true"
+    # nginx.ingress.kubernetes.io/enable-opentracing: "true"
 spec:
   rules:
   {{- range .hosts }}
