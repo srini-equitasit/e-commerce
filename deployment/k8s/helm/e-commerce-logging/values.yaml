@@ -44,7 +44,7 @@ jaeger:
   image: jaegertracing/all-in-one:1.40
 
 ingress:
-  - name: elastic-search
+  - name: logging-service
     namespace: logging
     replicaCount: 1
     annotations:
