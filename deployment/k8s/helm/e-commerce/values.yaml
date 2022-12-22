@@ -1,11 +1,12 @@
 # Release-wide Values
 replicas: 1
-version: 'latest'
+version: "latest"
 namespace: default
 readinessUrl: /actuator/health/readiness
 livenessUrl: /actuator/health/liveness
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -28,7 +29,17 @@ nodeSelector: {}
 
 tolerations: []
 
-affinity: {}  
+affinity: {}
+
+readinessProbe: 
+  initialDelaySeconds: 30
+  periodSeconds: 30
+  failureThreshold: 10
+
+livenessProbe: 
+  initialDelaySeconds: 300
+  periodSeconds: 300
+  failureThreshold: 3
 
 # Service Specific Values
 e_commerce_gateway:
@@ -42,23 +53,23 @@ product_price:
 product_seller:
   name: product-seller
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
-  port: 9083  
+  port: 9083
 product:
   name: product
-  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service  
+  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service
   port: 9081
 e_commerce_ang:
   name: e-commerce-ang
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
-  port: 80 
+  port: 80
 
 ingress:
   name: e-commerce-ing-service
   replicaCount: 1
-  annotations: 
+  annotations:
     class: nginx
   hosts:
-    - paths: 
+    - paths:
         - path: /
           backend:
             serviceName: e-commerce-ang

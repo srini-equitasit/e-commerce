@@ -28,14 +28,14 @@ spec:
           preStop:
             exec:
               command: ["sh", "-c", "sleep 10"]
-        # readinessProbe:
-        #   httpGet:
-        #     port: {{ .Values.e_commerce_gateway.port }}
-        #     path: {{ .Values.readinessUrl }}              
-        # livenessProbe:
-        #   httpGet:
-        #     port: {{ .Values.e_commerce_gateway.port }}
-        #     path: {{ .Values.livenessUrl }}                  
+        readinessProbe:
+          httpGet:
+            port: {{ .Values.e_commerce_gateway.port }}
+            path: {{ .Values.readinessUrl }}              
+        livenessProbe:
+          httpGet:
+            port: {{ .Values.e_commerce_gateway.port }}
+            path: {{ .Values.livenessUrl }}                  
         env: 
         - name: price_url
           valueFrom:
