@@ -12,6 +12,6 @@ spec:
     - protocol: TCP
       # nodePort: 30101
       port: 9081
-      targetPort: {{ .Values.product_price.port }}
+      targetPort: {{ .Values.product.port }}
   selector:
     app: {{ .Values.product.name }}
