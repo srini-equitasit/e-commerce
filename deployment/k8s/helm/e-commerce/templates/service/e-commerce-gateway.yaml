@@ -12,6 +12,6 @@ spec:
     - protocol: TCP
       # nodePort: 30101
       port: 9080
-      targetPort: 9080
+      targetPort: {{ .Values.e_commerce_gateway.port }}
   selector:
     app: {{ .Values.e_commerce_gateway.name }}

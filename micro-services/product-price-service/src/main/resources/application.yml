@@ -1,5 +1,6 @@
 server:
   port: 9082
+  shutdown: GRACEFUL
 spring:
   application:
     name: product-price-service
@@ -33,3 +34,11 @@ management:
     web.exposure.include: "*"
   endpoint:
     shutdown.enabled: true
+    health:
+      probes:
+        enabled: true
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true

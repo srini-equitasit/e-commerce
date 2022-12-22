@@ -24,6 +24,18 @@ spec:
       containers:
       - name: {{ .Values.e_commerce_gateway.name }}
         image: {{ .Values.e_commerce_gateway.image }}:{{ .Values.version }}
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "sleep 10"]
+        readinessProbe:
+          httpGet:
+            port: {{ .Values.e_commerce_gateway.port }}
+            path: {{ .Values.readinessUrl }}              
+        livenessProbe:
+          httpGet:
+            port: {{ .Values.e_commerce_gateway.port }}
+            path: {{ .Values.livenessUrl }}                  
         env: 
         - name: price_url
           valueFrom:
@@ -48,6 +60,6 @@ spec:
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
-        - containerPort: 9080
+        - containerPort: {{ .Values.e_commerce_gateway.port }}
           name: http
           protocol: TCP

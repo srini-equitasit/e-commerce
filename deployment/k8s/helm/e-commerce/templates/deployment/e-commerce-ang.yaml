@@ -32,6 +32,6 @@ spec:
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: {{ .Values.e_commerce_ang.port }}
           name: http
           protocol: TCP

@@ -11,6 +11,6 @@ spec:
     - protocol: TCP
       # nodePort: 30101
       port: 80
-      targetPort: 80
+      targetPort: {{ .Values.e_commerce_ang.port }}
   selector:
     app: {{ .Values.e_commerce_ang.name }}

@@ -23,6 +23,18 @@ spec:
       containers:
       - name: {{ .Values.product.name }}
         image: {{ .Values.product.image }}:{{ .Values.version }}
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "sleep 10"]
+        readinessProbe:
+          httpGet:
+            port: {{ .Values.product.port }}
+            path: {{ .Values.readinessUrl }}              
+        livenessProbe:
+          httpGet:
+            port: {{ .Values.product.port }}
+            path: {{ .Values.livenessUrl }}          
         env:
           - name: zipkin_url
             valueFrom:
@@ -32,6 +44,6 @@ spec:
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
-        - containerPort: 9081
+        - containerPort: {{ .Values.product.port }}
           name: http
           protocol: TCP

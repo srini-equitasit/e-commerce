@@ -2,6 +2,8 @@
 replicas: 1
 version: 'latest'
 namespace: default
+readinessUrl: /actuator/health/readiness
+livenessUrl: /actuator/health/liveness
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -32,18 +34,23 @@ affinity: {}
 e_commerce_gateway:
   name: e-commerce-gateway
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
+  port: 9080
 product_price:
   name: product-price
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
+  port: 9082
 product_seller:
   name: product-seller
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
+  port: 9083  
 product:
   name: product
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service  
+  port: 9081
 e_commerce_ang:
   name: e-commerce-ang
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
+  port: 80 
 
 ingress:
   name: e-commerce-ing-service

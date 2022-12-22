@@ -24,3 +24,6 @@ run "minikube tunnel" to assign extenal ip
 
 ## helm debug
     helm install e-commerece-logging --dry-run --debug .
+
+## helm value reference
+https://www.ibm.com/docs/en/urbancode-deploy/7.0.4?topic=cluster-helm-chart-configuration-parameters    

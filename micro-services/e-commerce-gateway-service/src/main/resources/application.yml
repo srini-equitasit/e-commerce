@@ -1,5 +1,6 @@
 server:
   port: 9080
+  shutdown: GRACEFUL
 spring:
   application:
     name: e-commerce-gateway-service
@@ -37,7 +38,15 @@ management:
   endpoints:
     web.exposure.include: "*"
   endpoint:
-    shutdown.enabled:
+    shutdown.enabled: true
+    health:
+      probes:
+        enabled: true
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
 product:
   app:
     priceUrl: ${price_url}
