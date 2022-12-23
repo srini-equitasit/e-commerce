@@ -1,7 +1,7 @@
 # Release-wide Values
 replicas: 1
 version: "latest"
-namespace: default
+namespace: e-commerce
 readinessUrl: /actuator/health/readiness
 livenessUrl: /actuator/health/liveness
 
@@ -31,21 +31,15 @@ tolerations: []
 
 affinity: {}
 
-readinessProbe: 
+readinessProbe:
   initialDelaySeconds: 30
   periodSeconds: 30
   failureThreshold: 10
-  httpGet:
-    path: /actuator/health/readiness
-    port: http  
 
-livenessProbe: 
+livenessProbe:
   initialDelaySeconds: 300
   periodSeconds: 300
   failureThreshold: 3
-  httpGet:
-  path: /actuator/health/liveness
-  port: http  
 
 # Service Specific Values
 e_commerce_gateway:
