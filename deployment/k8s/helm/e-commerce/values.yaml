@@ -32,7 +32,7 @@ tolerations: []
 affinity: {}
 
 readinessProbe:
-  initialDelaySeconds: 30
+  initialDelaySeconds: 90
   periodSeconds: 30
   failureThreshold: 10
 
