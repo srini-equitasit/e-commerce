@@ -30,3 +30,6 @@ https://www.ibm.com/docs/en/urbancode-deploy/7.0.4?topic=cluster-helm-chart-conf
 
 ## kafka
 https://github.com/dsyer/docker-services/blob/main/layers/kafka/deployment.yaml
+
+## helm ecr credentails
+https://artifacthub.io/packages/helm/architectminds/aws-ecr-credential
