@@ -26,15 +26,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["sh", "-c", "sleep 10"]
-        # readinessProbe:
-        #   httpGet:
-        #     port: {{ .Values.product_price.port }}
-        #     path: {{ .Values.readinessUrl }}              
-        # livenessProbe:
-        #   httpGet:
-        #     port: {{ .Values.product_price.port }}
-        #     path: {{ .Values.livenessUrl }}        
+              command: ["sh", "-c", "sleep 10"]      
         env:
           - name: zipkin_url
             valueFrom:

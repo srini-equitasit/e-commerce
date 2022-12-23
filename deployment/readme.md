@@ -27,3 +27,6 @@ run "minikube tunnel" to assign extenal ip
 
 ## helm value reference
 https://www.ibm.com/docs/en/urbancode-deploy/7.0.4?topic=cluster-helm-chart-configuration-parameters    
+
+## kafka
+https://github.com/dsyer/docker-services/blob/main/layers/kafka/deployment.yaml
