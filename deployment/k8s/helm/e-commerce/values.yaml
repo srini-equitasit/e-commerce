@@ -4,6 +4,7 @@ version: "latest"
 namespace: default
 readinessUrl: /actuator/health/readiness
 livenessUrl: /actuator/health/liveness
+enableProbes: false
 
 resources:
   {}

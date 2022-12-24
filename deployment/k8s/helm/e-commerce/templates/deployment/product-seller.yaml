@@ -28,6 +28,7 @@ spec:
           preStop:
             exec:
               command: ["sh", "-c", "sleep 10"]
+ {{ if(default .Values.enableProbes) }}               
         readinessProbe:
           httpGet:
             port: {{ .Values.product_seller.port }}
@@ -35,7 +36,8 @@ spec:
         livenessProbe:
           httpGet:
             port: {{ .Values.product_seller.port }}
-            path: {{ .Values.livenessUrl }}                      
+            path: {{ .Values.livenessUrl }}    
+    {{ end}}                              
         env:
           - name: zipkin_url
             valueFrom:
