@@ -28,14 +28,14 @@ spec:
           preStop:
             exec:
               command: ["sh", "-c", "sleep 10"]
-        # readinessProbe:
-        #   httpGet:
-        #     port: {{ .Values.product_seller.port }}
-        #     path: {{ .Values.readinessUrl }}              
-        # livenessProbe:
-        #   httpGet:
-        #     port: {{ .Values.product_seller.port }}
-        #     path: {{ .Values.livenessUrl }}                      
+        readinessProbe:
+          httpGet:
+            port: {{ .Values.product_seller.port }}
+            path: {{ .Values.readinessUrl }}              
+        livenessProbe:
+          httpGet:
+            port: {{ .Values.product_seller.port }}
+            path: {{ .Values.livenessUrl }}                      
         env:
           - name: zipkin_url
             valueFrom:
