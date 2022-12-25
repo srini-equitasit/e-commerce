@@ -1,0 +1,60 @@
+ {{- range .Values.containers }}   
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Values.namespace }}
+  labels:
+    app: {{ .name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+    spec:
+      containers:
+      - name: {{ .name }}
+        image: {{ .image }}:{{ $.Values.version }}
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "sleep 10"]        
+     {{ if(default .enableProbes) }}         
+        readinessProbe:
+          httpGet:
+            port: {{ .port }}
+            path: {{ $.Values.readinessUrl }}              
+        livenessProbe:
+          httpGet:
+            port: {{ .port }}
+            path: {{ $.Values.livenessUrl }}  
+      {{ end }}         
+        env: 
+ {{- range .env }}        
+        - name: {{.envKey}}
+          valueFrom:
+            configMapKeyRef: 
+              name: {{.configMapKey}}
+              key: {{.name}} 
+  {{- end }}                 
+
+  {{- range $.Values.env }}              
+        - name: {{.envKey}}
+          valueFrom:
+            configMapKeyRef: 
+              name: {{.configMapKey}}
+              key: {{.name}} 
+   {{- end }}                                    
+        # imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .port }}
+          name: http
+          protocol: TCP
+---
+{{- end }}           
