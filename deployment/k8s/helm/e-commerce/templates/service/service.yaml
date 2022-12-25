@@ -15,4 +15,5 @@ spec:
       targetPort: {{ .port }}
   selector:
     app: {{ .name }}
+---    
 {{- end }}     
