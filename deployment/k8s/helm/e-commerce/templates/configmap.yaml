@@ -18,5 +18,5 @@ data:
   productPriceDbUrl: jdbc:mysql://mysql:3306/product_price?createDatabaseIfNotExist=true
   productPriceDb: product_price    
       
-  # appProfile: prod
-  appProfile: default
+  appProfile: prod
+  # appProfile: default
