@@ -19,16 +19,21 @@ spec:
       - name: {{ .Values.e_commerce_ang.name }}
         image: {{ .Values.e_commerce_ang.image }}:{{ .Values.version }}
         env: 
-        - name: api_gateway_url
+ {{- range .Values.e_commerce_ang.env }}        
+        - name: {{.envKey}}
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
-              key: apiGatewayUrl
-        - name: zipkin_url
+              name: {{.configMapKey}}
+              key: {{.name}} 
+  {{- end }}                 
+
+  {{- range .Values.env }}              
+        - name: {{.envKey}}
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
-              key: zipKinUrl                       
+              name: {{.configMapKey}}
+              key: {{.name}} 
+   {{- end }}                                    
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:

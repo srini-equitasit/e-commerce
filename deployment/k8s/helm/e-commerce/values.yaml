@@ -5,6 +5,10 @@ namespace: default
 readinessUrl: /actuator/health/readiness
 livenessUrl: /actuator/health/liveness
 enableProbes: false
+env:
+  - name: zipKinUrl
+    configMapKey: e-commerce-configmap
+    envKey: zipkin_url
 
 resources:
   {}
@@ -47,6 +51,20 @@ e_commerce_gateway:
   name: e-commerce-gateway
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
   port: 9080
+  env:
+  - name: priceUrl
+    configMapKey: e-commerce-configmap
+    envKey: price_url
+
+  - name: sellerUrl
+    configMapKey: e-commerce-configmap
+    envKey: seller_url
+
+  - name: productUrl
+    configMapKey: e-commerce-configmap
+    envKey: product_url        
+
+
 product_price:
   name: product-price
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
@@ -63,6 +81,10 @@ e_commerce_ang:
   name: e-commerce-ang
   image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
   port: 80
+  env:
+  - name: apiGatewayUrl
+    configMapKey: e-commerce-configmap
+    envKey: api_gateway_url
 
 ingress:
   name: e-commerce-ing-service

@@ -39,26 +39,21 @@ spec:
             path: {{ .Values.livenessUrl }}  
       {{ end }}                              
         env: 
-        - name: price_url
+ {{- range .Values.e_commerce_gateway.env }}        
+        - name: {{.envKey}}
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
-              key: priceUrl        
-        - name: seller_url
+              name: {{.configMapKey}}
+              key: {{.name}} 
+  {{- end }}                 
+
+  {{- range .Values.env }}              
+        - name: {{.envKey}}
           valueFrom:
             configMapKeyRef: 
-              name: e-commerce-configmap
-              key: sellerUrl
-        - name: product_url
-          valueFrom:
-            configMapKeyRef: 
-              name: e-commerce-configmap
-              key: productUrl
-        - name: zipkin_url
-          valueFrom:
-            configMapKeyRef: 
-              name: e-commerce-configmap
-              key: zipKinUrl                                                      
+              name: {{.configMapKey}}
+              key: {{.name}} 
+   {{- end }}                                                     
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:

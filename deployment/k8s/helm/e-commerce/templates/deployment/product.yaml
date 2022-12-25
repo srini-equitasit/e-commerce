@@ -38,11 +38,13 @@ spec:
             path: {{ .Values.livenessUrl }}  
      {{ end }}                                 
         env:
-          - name: zipkin_url
-            valueFrom:
-              configMapKeyRef: 
-                name: e-commerce-configmap
-                key: zipKinUrl            
+  {{- range .Values.env }}              
+        - name: {{.envKey}}
+          valueFrom:
+            configMapKeyRef: 
+              name: {{.configMapKey}}
+              key: {{.name}} 
+   {{- end }}            
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
