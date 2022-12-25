@@ -1,34 +1,30 @@
+ {{- range .Values.containers }}   
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.e_commerce_gateway.name }}
+  name: {{ .name }}
   namespace: {{ .Values.namespace }}
-  # namespace: eks-example
   labels:
-    app: {{ .Values.e_commerce_gateway.name }}
-  annotations:
-    # Container Image Automated Updates
-    flux.weave.works/automated: "true"
-    # do not apply this manifest on the cluster
-    #flux.weave.works/ignore: "true"
+    app: {{ .name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.e_commerce_gateway.name }}
+      app: {{ .name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.e_commerce_gateway.name }}
+        app: {{ .name }}
     spec:
       containers:
-      - name: {{ .Values.e_commerce_gateway.name }}
-        image: {{ .Values.e_commerce_gateway.image }}:{{ .Values.version }}
+      - name: {{ .name }}
+        image: {{ .image }}:{{ .Values.version }}
         lifecycle:
           preStop:
             exec:
-              command: ["sh", "-c", "sleep 10"]
-     {{ if(default .Values.enableProbes) }}         
+              command: ["sh", "-c", "sleep 10"]        
+     {{ if(default .enableProbes) }}         
         readinessProbe:
           httpGet:
             port: {{ .Values.e_commerce_gateway.port }}
@@ -37,9 +33,9 @@ spec:
           httpGet:
             port: {{ .Values.e_commerce_gateway.port }}
             path: {{ .Values.livenessUrl }}  
-      {{ end }}                              
+      {{ end }}         
         env: 
- {{- range .Values.e_commerce_gateway.env }}        
+ {{- range .env }}        
         - name: {{.envKey}}
           valueFrom:
             configMapKeyRef: 
@@ -53,10 +49,12 @@ spec:
             configMapKeyRef: 
               name: {{.configMapKey}}
               key: {{.name}} 
-   {{- end }}                                                     
+   {{- end }}                                    
         # imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         ports:
-        - containerPort: {{ .Values.e_commerce_gateway.port }}
+        - containerPort: {{ .port }}
           name: http
           protocol: TCP
+---
+{{- end }}           

@@ -47,44 +47,52 @@ livenessProbe:
   failureThreshold: 3
 
 # Service Specific Values
-e_commerce_gateway:
-  name: e-commerce-gateway
-  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
-  port: 9080
-  env:
-  - name: priceUrl
-    configMapKey: e-commerce-configmap
-    envKey: price_url
+containers:
+  - name: e-commerce-gateway
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
+    enableProbes: true
+    port: 9080
+    serviceType: NodePort
+    env:
+      - name: priceUrl
+        configMapKey: e-commerce-configmap
+        envKey: price_url
 
-  - name: sellerUrl
-    configMapKey: e-commerce-configmap
-    envKey: seller_url
+      - name: sellerUrl
+        configMapKey: e-commerce-configmap
+        envKey: seller_url
 
-  - name: productUrl
-    configMapKey: e-commerce-configmap
-    envKey: product_url        
+      - name: productUrl
+        configMapKey: e-commerce-configmap
+        envKey: product_url
 
+  - name: product-price
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
+    port: 9082
+    # serviceType: NodePort
+    enableProbes: true    
 
-product_price:
-  name: product-price
-  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
-  port: 9082
-product_seller:
-  name: product-seller
-  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
-  port: 9083
-product:
-  name: product
-  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service
-  port: 9081
-e_commerce_ang:
-  name: e-commerce-ang
-  image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
-  port: 80
-  env:
-  - name: apiGatewayUrl
-    configMapKey: e-commerce-configmap
-    envKey: api_gateway_url
+  - name: product-seller
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
+    port: 9083
+    # serviceType: NodePort
+    enableProbes: true    
+
+  - name: product
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service
+    port: 9081
+    # serviceType: NodePort
+    enableProbes: true    
+
+  - name: e-commerce-ang
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
+    port: 80
+    serviceType: NodePort
+    enableProbes: false    
+    env:
+      - name: apiGatewayUrl
+        configMapKey: e-commerce-configmap
+        envKey: api_gateway_url
 
 ingress:
   name: e-commerce-ing-service
