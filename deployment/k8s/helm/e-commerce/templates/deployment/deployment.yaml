@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .name }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ $.Values.namespace }}
   labels:
     app: {{ .name }}
 spec:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: {{ .name }}
-        image: {{ .image }}:{{ .Values.version }}
+        image: {{ .image }}:{{ $.Values.version }}
         lifecycle:
           preStop:
             exec:
@@ -27,12 +27,12 @@ spec:
      {{ if(default .enableProbes) }}         
         readinessProbe:
           httpGet:
-            port: {{ .Values.e_commerce_gateway.port }}
-            path: {{ .Values.readinessUrl }}              
+            port: {{ .port }}
+            path: {{ $.Values.readinessUrl }}              
         livenessProbe:
           httpGet:
-            port: {{ .Values.e_commerce_gateway.port }}
-            path: {{ .Values.livenessUrl }}  
+            port: {{ .port }}
+            path: {{ $.Values.livenessUrl }}  
       {{ end }}         
         env: 
  {{- range .env }}        
