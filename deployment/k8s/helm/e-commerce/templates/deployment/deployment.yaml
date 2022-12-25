@@ -38,7 +38,11 @@ spec:
  {{- range .env }}        
         - name: {{.envKey}}
           valueFrom:
+     {{ if(.secret) }}           
+            secretKeyRef: 
+     {{ else }} 
             configMapKeyRef: 
+     {{ end }}                  
               name: {{.configMapKey}}
               key: {{.name}} 
   {{- end }}                 
@@ -46,7 +50,11 @@ spec:
   {{- range $.Values.env }}              
         - name: {{.envKey}}
           valueFrom:
+     {{ if(.secret) }}           
+            secretKeyRef: 
+     {{ else }} 
             configMapKeyRef: 
+     {{ end }}  
               name: {{.configMapKey}}
               key: {{.name}} 
    {{- end }}                                    

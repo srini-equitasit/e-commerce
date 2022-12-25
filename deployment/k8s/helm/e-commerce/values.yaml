@@ -10,6 +10,28 @@ env:
     configMapKey: e-commerce-configmap
     envKey: zipkin_url
 
+  - name: appProfile
+    configMapKey: e-commerce-configmap
+    envKey: SPRING_PROFILES_ACTIVE
+
+  - name: dbUrl
+    configMapKey: e-commerce-configmap
+    envKey: db_url
+
+  - name: dbName
+    configMapKey: e-commerce-configmap
+    envKey: db_name    
+
+  - name: dbUser
+    configMapKey: e-commerce-secret
+    envKey: db_user
+    secret: true
+
+  - name: dbPwd
+    configMapKey: e-commerce-secret
+    envKey: db_pwd
+    secret: true
+
 resources:
   {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -70,25 +92,25 @@ containers:
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
     port: 9082
     # serviceType: NodePort
-    enableProbes: false    
+    enableProbes: false
 
   - name: product-seller
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
     port: 9083
     # serviceType: NodePort
-    enableProbes: false    
+    enableProbes: false
 
   - name: product
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service
     port: 9081
     # serviceType: NodePort
-    enableProbes: false    
+    enableProbes: false
 
   - name: e-commerce-ang
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
     port: 80
     serviceType: NodePort
-    enableProbes: false    
+    enableProbes: false
     env:
       - name: apiGatewayUrl
         configMapKey: e-commerce-configmap

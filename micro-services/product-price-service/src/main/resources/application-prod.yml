@@ -6,5 +6,13 @@ spring:
     username: ${db_user}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  flyway:
+    url: ${db_url}
+    schemas:
+      - ${db_name}
+    user: ${db_user}
+    password: ${db_pwd}

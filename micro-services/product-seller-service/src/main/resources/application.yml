@@ -18,10 +18,14 @@ spring:
     username: sa
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     show-sql: true
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false
     database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    url: jdbc:h2:mem:mydb
+    user: sa
+    password: sa
 
 #open docs
 springdoc:
