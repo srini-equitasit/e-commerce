@@ -8,6 +8,14 @@ data:
   sellerUrl: http://product-seller:9083
   productUrl: http://product:9081
   zipKinUrl: http://jaeger.logging:9411
-  dbUrl: jdbc:mysql://mysql:3306/ecommerce?createDatabaseIfNotExist=true
-  dbName: ecommerce
+
+  productDbUrl: jdbc:mysql://mysql:3306/product?createDatabaseIfNotExist=true
+  productDb: product
+
+  productSellerDbUrl: jdbc:mysql://mysql:3306/product_seller?createDatabaseIfNotExist=true
+  productSellerDb: product_seller
+
+  productPriceDbUrl: jdbc:mysql://mysql:3306/product_price?createDatabaseIfNotExist=true
+  productPriceDb: product_price    
+      
   appProfile: prod

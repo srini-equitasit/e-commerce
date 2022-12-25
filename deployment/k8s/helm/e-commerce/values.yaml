@@ -14,14 +14,6 @@ env:
     configMapKey: e-commerce-configmap
     envKey: SPRING_PROFILES_ACTIVE
 
-  - name: dbUrl
-    configMapKey: e-commerce-configmap
-    envKey: db_url
-
-  - name: dbName
-    configMapKey: e-commerce-configmap
-    envKey: db_name    
-
   - name: dbUser
     configMapKey: e-commerce-secret
     envKey: db_user
@@ -93,18 +85,42 @@ containers:
     port: 9082
     # serviceType: NodePort
     enableProbes: false
+    env:
+      - name: 'productPriceDbUrl'
+        configMapKey: e-commerce-configmap
+        envKey: db_url
+
+      - name: 'productPriceDb'
+        configMapKey: e-commerce-configmap
+        envKey: db_name
 
   - name: product-seller
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
     port: 9083
     # serviceType: NodePort
     enableProbes: false
+    env:
+      - name: 'productSellerDbUrl'
+        configMapKey: e-commerce-configmap
+        envKey: db_url
+
+      - name: 'productSellerDb'
+        configMapKey: e-commerce-configmap
+        envKey: db_name  
 
   - name: product
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service
     port: 9081
     # serviceType: NodePort
     enableProbes: false
+    env:
+      - name: 'productDbUrl'
+        configMapKey: e-commerce-configmap
+        envKey: db_url
+
+      - name: 'productDb'
+        configMapKey: e-commerce-configmap
+        envKey: db_name   
 
   - name: e-commerce-ang
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
