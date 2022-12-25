@@ -43,7 +43,7 @@ spec:
               key: {{.name}} 
   {{- end }}                 
 
-  {{- range .Values.env }}              
+  {{- range $.Values.env }}              
         - name: {{.envKey}}
           valueFrom:
             configMapKeyRef: 
