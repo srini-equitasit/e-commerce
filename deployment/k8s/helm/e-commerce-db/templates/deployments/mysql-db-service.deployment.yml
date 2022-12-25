@@ -43,13 +43,13 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom :
                 secretKeyRef :
-                  name : emp-app-secret
+                  name : e-commerce-db-secret
                   key :  db_pwd
 
             - name: MYSQL_DATABASE # Setting Database Name from a 'ConfigMap'
               valueFrom :
                 configMapKeyRef :
-                  name : emp-app-config
+                  name : e-commerce-db-secret
                   key :  dbName
           resources:
             limits:
