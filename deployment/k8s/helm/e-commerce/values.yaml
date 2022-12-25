@@ -50,7 +50,7 @@ livenessProbe:
 containers:
   - name: e-commerce-gateway
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
-    enableProbes: true
+    enableProbes: false
     port: 9080
     serviceType: NodePort
     env:
@@ -70,19 +70,19 @@ containers:
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
     port: 9082
     # serviceType: NodePort
-    enableProbes: true    
+    enableProbes: false    
 
   - name: product-seller
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-seller-service
     port: 9083
     # serviceType: NodePort
-    enableProbes: true    
+    enableProbes: false    
 
   - name: product
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-service
     port: 9081
     # serviceType: NodePort
-    enableProbes: true    
+    enableProbes: false    
 
   - name: e-commerce-ang
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
