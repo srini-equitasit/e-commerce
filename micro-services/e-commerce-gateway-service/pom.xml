@@ -91,7 +91,20 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
+
+                <configuration>
+
+                    <systemPropertyVariables>
+                        <price_url>http://localhost:9082</price_url>
+                        <seller_url>http://localhost:9083</seller_url>
+                        <product_url>http://localhost:9081</product_url>
+                        <zipkin_url>http://localhost:9411</zipkin_url>
+                    </systemPropertyVariables>
+
+                </configuration>
             </plugin>
+
         </plugins>
     </build>
 
