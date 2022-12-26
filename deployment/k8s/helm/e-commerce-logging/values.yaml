@@ -1,7 +1,7 @@
 # Release-wide Values
 replicas: 1
 version: "latest"
-namespace: e-commerce-logging
+namespace: logging
 
 resources:
   {}
