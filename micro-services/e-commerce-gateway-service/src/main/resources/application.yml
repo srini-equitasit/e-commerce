@@ -23,9 +23,46 @@ logging:
     org:
       springframework:
         cloud:
-          gateway: INFO
-#          gateway: TRACE
+          #          gateway: INFO
+          gateway: TRACE
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      product:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+      price:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+      seller:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+  timelimiter:
+    instances:
+      product:
+        timeoutDuration: 4s
+      price:
+        timeoutDuration: 4s
+      seller:
+        timeoutDuration: 4s
+  ratelimiter:
+    instances:
+      product:
+        registerHealthIndicator: true
+      price:
+        registerHealthIndicator: true
+      seller:
+        registerHealthIndicator: true
 
 #open docs
 springdoc:
@@ -40,6 +77,7 @@ management:
   endpoint:
     shutdown.enabled: true
     health:
+      show-details: ALWAYS
       probes:
         enabled: true
   health:
@@ -47,6 +85,11 @@ management:
       enabled: true
     livenessstate:
       enabled: true
+    circuitbreakers:
+      enabled: true
+    ratelimiters:
+      enabled: true
+
 product:
   app:
     priceUrl: ${price_url}

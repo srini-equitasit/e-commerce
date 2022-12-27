@@ -7,10 +7,12 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.springframework.cloud.gateway.support.RouteMetadataUtils.CONNECT_TIMEOUT_ATTR;
+import static org.springframework.cloud.gateway.support.RouteMetadataUtils.RESPONSE_TIMEOUT_ATTR;
 
 @Configuration
 @Slf4j
@@ -28,11 +30,23 @@ public class GatewayRoutesConfig {
         RouteLocator routeLocator = builder.routes()
                 .route(p -> p
                         .path("/price/**")
+                        .filters(f -> f.retry(rc -> rc.allMethods().setRetries(3).setBackoff(Duration.ofMillis(50), Duration.ofMillis(500), 2, true))
+                                .circuitBreaker(cb -> cb.setName("price")))
+                        .metadata(CONNECT_TIMEOUT_ATTR, 2000)
+                        .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
                         .uri(ecommerceAppConfig.getPriceUrl()))
                 .route(p -> p.path("/seller/**")
+                        .filters(f -> f.retry(rc -> rc.allMethods().setRetries(3).setBackoff(Duration.ofMillis(50), Duration.ofMillis(500), 2, true))
+                                .circuitBreaker(cb -> cb.setName("seller")))
+                        .metadata(CONNECT_TIMEOUT_ATTR, 2000)
+                        .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
                         .uri(ecommerceAppConfig.getSellerUrl()))
 
                 .route(p -> p.path("/product/**")
+                        .filters(f -> f.retry(rc -> rc.allMethods().setRetries(3).setBackoff(Duration.ofMillis(50), Duration.ofMillis(500), 2, true))
+                                .circuitBreaker(cb -> cb.setName("product")))
+                        .metadata(CONNECT_TIMEOUT_ATTR, 2000)
+                        .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
                         .uri(ecommerceAppConfig.getProductUrl()))
                 .build();
         log.info("routes configure end , routeLocator {} ", routeLocator);
