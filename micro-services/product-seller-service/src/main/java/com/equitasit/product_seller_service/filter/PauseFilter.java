@@ -1,4 +1,4 @@
-package com.equitasit.product_service.filter;
+package com.equitasit.product_seller_service.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

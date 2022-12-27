@@ -55,14 +55,7 @@ resilience4j:
         timeoutDuration: 4s
       seller:
         timeoutDuration: 4s
-  ratelimiter:
-    instances:
-      product:
-        registerHealthIndicator: true
-      price:
-        registerHealthIndicator: true
-      seller:
-        registerHealthIndicator: true
+
 
 #open docs
 springdoc:
