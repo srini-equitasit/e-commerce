@@ -8,6 +8,10 @@ server {
     root /usr/share/nginx/html;
     index index.html index.htm;
   }
+  location /products/ {
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+  }
 
   location /api/ {
     rewrite /api/(.*) /$1  break;
