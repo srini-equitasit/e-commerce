@@ -19,3 +19,15 @@ data:
             }
         ]
     }
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ge-config
+  namespace: monitoring
+data:
+  grafana.ini: |-
+    [server]
+    domain = ec2-44-201-17-89.compute-1.amazonaws.com
+    root_url = http://ec2-44-201-17-89.compute-1.amazonaws.com/grafana/

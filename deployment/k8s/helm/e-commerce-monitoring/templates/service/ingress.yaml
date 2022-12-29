@@ -1,0 +1,32 @@
+{{- range .Values.ingress }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .name }}
+  namespace: {{ .namespace }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .annotations.class }}
+    
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1    
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/add-base-url: "true"
+    # ingress.kubernetes.io/add-base-url: "true"
+    # nginx.ingress.kubernetes.io/enable-opentracing: "true"
+spec:
+  rules:
+  {{- range .hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+        {{- range .paths }}
+          - path: {{ .path }}
+            pathType: Prefix
+            backend:
+              service: 
+                name: {{ .backend.serviceName }}
+                port:
+                  number: {{ .backend.servicePort }}
+          {{- end }}
+    {{- end }}
+---    
+{{- end }}

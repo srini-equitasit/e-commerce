@@ -36,3 +36,21 @@ prometheus:
 grafana:
   name: grafana
   image: grafana/grafana:latest
+
+
+ingress:
+  - name: monitoring-service
+    namespace: monitoring
+    replicaCount: 1
+    annotations:
+      class: nginx
+    hosts:
+      - paths:
+          - path: /grafana
+            backend:
+              serviceName: grafana
+              servicePort: 3000
+          - path: /prometheus
+            backend:
+              serviceName: prometheus
+              servicePort: 9090 

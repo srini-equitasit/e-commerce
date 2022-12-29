@@ -34,3 +34,7 @@ spec:
           configMap:
             defaultMode: 420
             name: grafana-datasources
+        - name: ge-config
+          configMap:
+            defaultMode: 420
+            name: ge-config            
