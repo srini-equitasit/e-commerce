@@ -39,3 +39,18 @@ https://github.com/salaboy/s1p_gateway
 
 ## minikube dashboard on EC2
 https://plainenglish.io/blog/running-kubernetes-using-minikube-cluster-on-the-aws-cloud
+
+## solving infinite queue message issue
+https://www.vinsguru.com/architectural-pattern-competing-consumers-pattern-implementation-with-kubernetes/
+
+## cqrs patteren
+https://www.vinsguru.com/cqrs-pattern/
+
+# saga pattern
+https://www.vinsguru.com/choreography-saga-pattern-with-spring-boot/
+
+# time out patteren
+https://www.vinsguru.com/timeout-pattern/
+
+# scatter and gather
+https://www.vinsguru.com/scatter-gather-pattern/
