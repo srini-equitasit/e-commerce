@@ -36,3 +36,6 @@ https://artifacthub.io/packages/helm/architectminds/aws-ecr-credential
 
 ## gateway code
 https://github.com/salaboy/s1p_gateway
+
+## minikube dashboard on EC2
+https://plainenglish.io/blog/running-kubernetes-using-minikube-cluster-on-the-aws-cloud
