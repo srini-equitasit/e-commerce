@@ -22,6 +22,8 @@ COPY default.conf.template /etc/nginx/templates/default.conf.template
 
 COPY 90-envsubst-on-config.sh /docker-entrypoint.d/90-envsubst-on-config.sh
 
+RUN chmod 777 /docker-entrypoint.d/90-envsubst-on-config.sh
+
 #CMD envsubst < /usr/share/nginx/html/assets/env.template.config.js  > /usr/share/nginx/html/assets/env.config.js
 #
 #ENTRYPOINT  ["/docker-entrypoint.sh"]
