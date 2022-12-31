@@ -20,7 +20,7 @@ COPY --from=build-step /app/dist/e-commerce-ang /usr/share/nginx/html
 
 COPY default.conf.template /etc/nginx/templates/default.conf.template
 
-CMD ["envsubst", " < ","assets/env.template.config.js "," > ","assets/env.config.js"]
+CMD ["envsubst", " < " "assets/env.template.config.js" " > " "assets/env.config.js"]
 
 EXPOSE 80
 
