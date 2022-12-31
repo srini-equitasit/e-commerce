@@ -22,7 +22,7 @@ COPY default.conf.template /etc/nginx/templates/default.conf.template
 
 CMD envsubst < /usr/share/nginx/html/assets/env.template.config.js  > /usr/share/nginx/html/assets/env.config.js
 
-CMD /docker-entrypoint.sh
+ENTRYPOINT  /docker-entrypoint.sh
 
 EXPOSE 80
 
