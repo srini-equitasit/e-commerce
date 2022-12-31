@@ -9,6 +9,11 @@ import {Product} from "../model/product";
 })
 export class ProductListComponent implements OnInit {
 
+
+  loading: boolean = false;
+
+  errMsg = '';
+
   products: Product[] = []
 
 
@@ -16,10 +21,25 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.loading = true;
+    this.errMsg = '';
     const obs = this.productService.getAll();
-    obs.subscribe(data => {
-      this.products = data;
+    obs.subscribe({
+      next: data => {
+        this.products = data;
+        this.loading = false;
+      },
+      error: (data) => {
+        this.errMsg = 'Error While loading the products';
+        this.loading = false;
+      }
+
     })
+    // obs.subscribe()
   }
 
 }

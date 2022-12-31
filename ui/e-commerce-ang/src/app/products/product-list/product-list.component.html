@@ -1,5 +1,8 @@
 <div class="prod-con">
 
+  <mat-spinner *ngIf="loading">
+  </mat-spinner>
+
   <div *ngFor="let product of products">
     <mat-card class="prod-card">
       <mat-card-header>

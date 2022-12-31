@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${db_pwd}
+    url: ${db_url}
+    username: ${db_user}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+  flyway:
+    url: ${db_url}
+    schemas:
+      - ${db_name}
+    user: ${db_user}
+    password: ${db_pwd}

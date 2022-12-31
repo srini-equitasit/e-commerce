@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+
+  <span> {{title}}</span>
+  <span class="tb-spacer"></span>
+  <button mat-icon-button   *ngIf="authenticated">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+
+  <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<mat-menu #menu="matMenu">
+  <ng-container *ngIf="!authenticated">
+    <button mat-menu-item (click)="login()">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="authenticated">
+
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>{{userProfile?.name}}</span>
+    </button>
+
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+
+
+  </ng-container>
+</mat-menu>

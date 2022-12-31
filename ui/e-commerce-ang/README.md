@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## icons
+https://fonts.google.com/icons?icon.set=Material+Icons&icon.query=user
+
+
+## Auth 0
+
+https://auth0.com/docs/quickstart/spa/angular/01-login
+
+https://auth0.com/blog/complete-guide-to-angular-user-authentication/
+
+https://auth0.com/docs/libraries/auth0-angular-spa
+
+## nginx
+http://nginx.org/en/docs/windows.html

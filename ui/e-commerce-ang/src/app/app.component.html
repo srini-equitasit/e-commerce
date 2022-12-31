@@ -1,9 +1,17 @@
+<app-e-commerce-tb [title]="title"></app-e-commerce-tb>
+
 <div class="container1">
-  <h1>
-    {{title}}
-  </h1>
-  <button class="button button5" type="button" routerLink="">Home</button>
-  <button class="button button1" type="button" routerLink="/products">Products</button>
+
+  <div *ngIf="loading" class="auth-loading-msg">
+    <div> Authentication in progress</div>
+    <div>
+      <mat-spinner diameter="25" color="warn"></mat-spinner>
+    </div>
+  </div>
+
+  <!--  <button class="button button5" type="button" routerLink="">Home</button>-->
+  <!--  <button class="button button1" type="button" routerLink="/products">Products</button>-->
+
   <!--  <button class="button button2" type="button" routerLink="/depts">Departments</button>-->
 
 
