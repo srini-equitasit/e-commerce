@@ -20,9 +20,11 @@ COPY --from=build-step /app/dist/e-commerce-ang /usr/share/nginx/html
 
 COPY default.conf.template /etc/nginx/templates/default.conf.template
 
-CMD envsubst < /usr/share/nginx/html/assets/env.template.config.js  > /usr/share/nginx/html/assets/env.config.js
+COPY 90-envsubst-on-config.sh /docker-entrypoint.d/90-envsubst-on-config.sh
 
-ENTRYPOINT  /docker-entrypoint.sh
+#CMD envsubst < /usr/share/nginx/html/assets/env.template.config.js  > /usr/share/nginx/html/assets/env.config.js
+#
+#ENTRYPOINT  ["/docker-entrypoint.sh"]
 
 EXPOSE 80
 
