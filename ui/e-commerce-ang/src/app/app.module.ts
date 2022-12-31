@@ -20,8 +20,8 @@ import {ECommerceGeneralModule} from "./general/general.module";
     HttpClientModule,
     BrowserAnimationsModule,
     AuthModule.forRoot({
-      domain: 'dev-gh3wgihw.jp.auth0.com',
-      clientId: 'zqLb5a5bYoLPZoU71JAvigGh5N7TmtsZ'
+      domain: sessionStorage.getItem('authDomain') || '',
+      clientId: sessionStorage.getItem('clientId') || ''
     }),
     ECommerceGeneralModule,
   ],
