@@ -131,7 +131,7 @@ containers:
         envKey: db_name   
 
   - name: e-commerce-ang
-    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-ang-secure
     port: 80
     serviceType: NodePort
     enableProbes: false
