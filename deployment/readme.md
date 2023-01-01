@@ -40,6 +40,9 @@ https://github.com/salaboy/s1p_gateway
 ## minikube dashboard on EC2
 https://plainenglish.io/blog/running-kubernetes-using-minikube-cluster-on-the-aws-cloud
 
+## ssh key
+ssh -i .\aws-arth-key.pem -L 80:localhost:80 ubuntu@15.207.16.144
+
 ## solving infinite queue message issue
 https://www.vinsguru.com/architectural-pattern-competing-consumers-pattern-implementation-with-kubernetes/
 
@@ -54,3 +57,6 @@ https://www.vinsguru.com/timeout-pattern/
 
 # scatter and gather
 https://www.vinsguru.com/scatter-gather-pattern/
+
+# marialized view 
+https://www.vinsguru.com/materialized-view-postgresql/

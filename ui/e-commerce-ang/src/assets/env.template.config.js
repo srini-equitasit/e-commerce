@@ -7,3 +7,4 @@
 
 sessionStorage.setItem('authDomain','$authDomain');
 sessionStorage.setItem('clientId','$clientId');
+sessionStorage.setItem('audienceId','$audienceId');

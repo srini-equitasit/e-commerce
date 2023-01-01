@@ -38,5 +38,7 @@ https://auth0.com/blog/complete-guide-to-angular-user-authentication/
 
 https://auth0.com/docs/libraries/auth0-angular-spa
 
+https://github.com/auth0/auth0-angular/issues/70
+
 ## nginx
 http://nginx.org/en/docs/windows.html

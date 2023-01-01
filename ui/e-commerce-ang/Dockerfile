@@ -31,3 +31,5 @@ RUN chmod 777 /docker-entrypoint.d/90-envsubst-on-config.sh
 EXPOSE 80
 
 #docker run -p4200:80 -e helloApiUrl=http://ec2-100-26-3-123.compute-1.amazonaws.com:9083/hello 337901474843.dkr.ecr.us-east-1.amazonaws.com/equitas-it:hello-angular-ui
+
+# docker run -p80:80 -e api_gateway_url=http://localhost:8888 -e authDomain=dev-gh3wgihw.jp.auth0.com -e clientId=zqLb5a5bYoLPZoU71JAvigGh5N7TmtsZ eocmmerce-ui:latest

@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: e-commerce-gateway-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Replace with the domain of your Auth0 tenant.
+          # Note the trailing slash is important!
+          issuer-uri: https://dev-gh3wgihw.jp.auth0.com/
   cloud:
     gateway:
       httpclient:
@@ -86,6 +93,10 @@ management:
       enabled: true
     ratelimiters:
       enabled: true
+
+auth0:
+  audience: http://e-commerce-gateway:9080
+
 
 product:
   app:
