@@ -24,6 +24,7 @@ public class GatewayRoutesConfig {
 
     Map<String, String> urlToPartMap = new HashMap<>();
 
+
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         log.info("routes configure start");
@@ -51,6 +52,14 @@ public class GatewayRoutesConfig {
                         .metadata(CONNECT_TIMEOUT_ATTR, 2000)
                         .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
                         .uri(ecommerceAppConfig.getProductUrl()))
+                .route(p -> p.path("/user/**")
+                        .filters(f -> f.retry(rc -> rc.allMethods().setRetries(3).setBackoff(getBackoffConfig()))
+                                .circuitBreaker(cb -> cb.setName("user")
+                                        .setFallbackUri("forward:/user/fallback")
+                                ))
+                        .metadata(CONNECT_TIMEOUT_ATTR, 2000)
+                        .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
+                        .uri(ecommerceAppConfig.getUserUrl()))
                 .build();
         log.info("routes configure end , routeLocator {} ", routeLocator);
         return routeLocator;

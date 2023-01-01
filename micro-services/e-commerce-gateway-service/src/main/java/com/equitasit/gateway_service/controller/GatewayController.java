@@ -23,4 +23,9 @@ public class GatewayController {
         ResponseEntity responseEntity = ResponseEntity.noContent().build();
         return Mono.just(responseEntity);
     }
+    @GetMapping("/user/fallback")
+    Mono<ResponseEntity> getUserFallback() {
+        ResponseEntity responseEntity = ResponseEntity.noContent().build();
+        return Mono.just(responseEntity);
+    }
 }

@@ -99,7 +99,6 @@
         </dependency>
 
 
-
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -120,6 +119,12 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
 
                 <configuration>
+
+                    <jvmArguments>
+<!--                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005-->
+                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n
+                    </jvmArguments>
+
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -127,12 +132,12 @@
                         </exclude>
                     </excludes>
                     <systemPropertyVariables>
-                        <db_url>jdbc:mysql://localhost:3306/product?createDatabaseIfNotExist=true</db_url>
+                        <db_url>jdbc:mysql://localhost:3306/user?createDatabaseIfNotExist=true</db_url>
                         <db_user>root</db_user>
                         <db_pwd>root</db_pwd>
                         <zipkin_url>http://localhost:9411</zipkin_url>
                         <spring.profiles.active>prod</spring.profiles.active>
-                        <db_name>product</db_name>
+                        <db_name>user</db_name>
                     </systemPropertyVariables>
                 </configuration>
 
