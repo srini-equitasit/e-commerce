@@ -1,5 +1,5 @@
 CREATE TABLE user(
-    id integer NOT NULL,
+    id integer NOT NULL AUTO_INCREMENT,
     email varchar(255),
     fname varchar(255),
     lname varchar(255),

@@ -1,5 +1,5 @@
 CREATE TABLE product_seller(
-    id integer NOT NULL,
+    id integer NOT NULL AUTO_INCREMENT,
     name varchar(255),
     location varchar(255),
     product_id integer,

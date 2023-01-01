@@ -1,5 +1,5 @@
 CREATE TABLE product_price(
-    id integer NOT NULL,
+    id integer NOT NULL AUTO_INCREMENT,
     price DOUBLE,
     product_id integer,
     primary key (id)

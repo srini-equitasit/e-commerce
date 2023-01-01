@@ -28,6 +28,7 @@ public class UserService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Transactional
     public UserDTO save(UserDTO userDTO) {
         log.debug("enter");
         User user = modelMapper.map(userDTO, User.class);

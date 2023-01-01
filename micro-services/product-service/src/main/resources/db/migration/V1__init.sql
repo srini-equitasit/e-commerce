@@ -1,5 +1,5 @@
 CREATE TABLE product(
-    id integer NOT NULL,
+    id integer NOT NULL AUTO_INCREMENT,
     name varchar(255),
     description varchar(4000),
     img_url varchar(3000),
