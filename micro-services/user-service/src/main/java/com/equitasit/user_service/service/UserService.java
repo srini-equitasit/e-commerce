@@ -96,6 +96,7 @@ public class UserService {
 
         Optional<User> optionalUser = userRepository.findByEmail(userDTO.getEmail());
         if (optionalUser.isPresent()) {
+            userDTO.setId(optionalUser.get().getId());
             savedUserDTO = update(userDTO);
         } else {
             savedUserDTO = save(userDTO);

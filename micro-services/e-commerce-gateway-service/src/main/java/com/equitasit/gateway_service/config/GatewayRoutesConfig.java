@@ -7,6 +7,7 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -53,6 +54,7 @@ public class GatewayRoutesConfig {
                         .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
                         .uri(ecommerceAppConfig.getProductUrl()))
                 .route(p -> p.path("/user/**")
+
                         .filters(f -> f.retry(rc -> rc.allMethods().setRetries(3).setBackoff(getBackoffConfig()))
                                 .circuitBreaker(cb -> cb.setName("user")
                                         .setFallbackUri("forward:/user/fallback")
