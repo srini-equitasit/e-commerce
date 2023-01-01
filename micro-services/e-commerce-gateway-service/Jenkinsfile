@@ -4,7 +4,7 @@ pipeline {
     environment {
         AWS_ACCOUNT_ID = "337901474843"
         AWS_DEFAULT_REGION = "us-east-1"
-        IMAGE_REPO_NAME = "e-commerce-gateway-service"
+        IMAGE_REPO_NAME = "e-commerce-gateway-service-secure"
         IMAGE_TAG_LATEST = "latest"
         IMAGE_TAG_VERSION = "${env.BUILD_ID}"
         // IMAGE_TAG="spring-boot-hello_${env.BUILD_ID}"

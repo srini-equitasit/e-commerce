@@ -40,8 +40,8 @@ https://github.com/salaboy/s1p_gateway
 ## minikube dashboard on EC2
 https://plainenglish.io/blog/running-kubernetes-using-minikube-cluster-on-the-aws-cloud
 
-## ssh key
-ssh -i .\aws-arth-key.pem -L 80:localhost:80 ubuntu@15.207.16.144
+## ssh tunneling for remote host
+ssh -i CICD_PIPELINE.pem -L 80:localhost:80 ec2-user@ec2-3-235-13-182.compute-1.amazonaws.com
 
 ## solving infinite queue message issue
 https://www.vinsguru.com/architectural-pattern-competing-consumers-pattern-implementation-with-kubernetes/
