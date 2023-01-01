@@ -10,7 +10,7 @@ spring:
         jwt:
           # Replace with the domain of your Auth0 tenant.
           # Note the trailing slash is important!
-          issuer-uri: https://dev-gh3wgihw.jp.auth0.com/
+          issuer-uri: ${jwt_issuer_uri}
   cloud:
     gateway:
       httpclient:
@@ -95,7 +95,7 @@ management:
       enabled: true
 
 auth0:
-  audience: http://e-commerce-gateway:9080
+  audience: ${audience_id}
 
 
 product:

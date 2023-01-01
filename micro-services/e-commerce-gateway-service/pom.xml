@@ -107,6 +107,8 @@
                         <seller_url>http://localhost:9083</seller_url>
                         <product_url>http://localhost:9081</product_url>
                         <zipkin_url>http://localhost:9411</zipkin_url>
+                        <audience_id>http://e-commerce-gateway:9080</audience_id>
+                        <jwt_issuer_uri>https://dev-gh3wgihw.jp.auth0.com/</jwt_issuer_uri>
                     </systemPropertyVariables>
 
                 </configuration>

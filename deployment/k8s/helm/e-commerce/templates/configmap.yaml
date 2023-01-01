@@ -17,6 +17,11 @@ data:
 
   productPriceDbUrl: jdbc:mysql://mysql:3306/product_price?createDatabaseIfNotExist=true
   productPriceDb: product_price    
+
+# OAuth0 configuration
+  authDomain: dev-gh3wgihw.jp.auth0.com
+  clientId: zqLb5a5bYoLPZoU71JAvigGh5N7TmtsZ
+  audienceId: http://e-commerce-gateway:9080
       
   appProfile: prod
   # appProfile: default
