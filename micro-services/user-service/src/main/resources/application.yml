@@ -40,6 +40,7 @@ management:
   endpoint:
     shutdown.enabled:
     health:
+      show-details: ALWAYS
       probes:
         enabled: true
   health:
