@@ -63,7 +63,7 @@ livenessProbe:
 # Service Specific Values
 containers:
   - name: e-commerce-gateway
-    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service
+    image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/e-commerce-gateway-service-secure
     enableProbes: false
     port: 9080
     serviceType: NodePort
@@ -79,6 +79,14 @@ containers:
       - name: productUrl
         configMapKey: e-commerce-configmap
         envKey: product_url
+
+      - name: audienceId
+        configMapKey: e-commerce-configmap
+        envKey: audience_id
+
+      - name: jwtIssuerUri
+        configMapKey: e-commerce-configmap
+        envKey: jwt_issuer_uri               
 
   - name: product-price
     image: 337901474843.dkr.ecr.us-east-1.amazonaws.com/product-price-service
@@ -131,6 +139,18 @@ containers:
       - name: apiGatewayUrl
         configMapKey: e-commerce-configmap
         envKey: api_gateway_url
+
+      - name: authDomain
+        configMapKey: e-commerce-configmap
+        envKey: authDomain
+
+      - name: clientId
+        configMapKey: e-commerce-configmap
+        envKey: clientId
+
+      - name: audienceId
+        configMapKey: e-commerce-configmap
+        envKey: audienceId                        
 
 ingress:
   name: e-commerce-ing-service

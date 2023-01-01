@@ -22,6 +22,7 @@ data:
   authDomain: dev-gh3wgihw.jp.auth0.com
   clientId: zqLb5a5bYoLPZoU71JAvigGh5N7TmtsZ
   audienceId: http://e-commerce-gateway:9080
+  jwtIssuerUri: https://dev-gh3wgihw.jp.auth0.com/
       
   appProfile: prod
   # appProfile: default
