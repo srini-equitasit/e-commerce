@@ -46,7 +46,10 @@ export class ECommerceTbComponent implements OnInit {
     this.cartItems$ = this.store.select(state => state.cartItems);
 
     this.cartItems$.subscribe(data => {
-      this.cartItemCnt = data.length
+      for (const ci of data) {
+        this.cartItemCnt = this.cartItemCnt + ci.qty;
+      }
+
     });
 
     this.store.dispatch(fromActions.LOAD_CART_ITEMS_ACTION({payload: 2}));

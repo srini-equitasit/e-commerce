@@ -70,7 +70,7 @@ public class GatewayRoutesConfig {
                                 ))
                         .metadata(CONNECT_TIMEOUT_ATTR, 2000)
                         .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
-                        .uri(ecommerceAppConfig.getUserUrl()))
+                        .uri(ecommerceAppConfig.getCartItemsUrl()))
                 .build();
         log.info("routes configure end , routeLocator {} ", routeLocator);
         return routeLocator;

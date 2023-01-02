@@ -20,4 +20,6 @@ public class ECommerceAppConfig {
     private String productUrl;
 
     private String userUrl;
+
+    private String cartItemsUrl;
 }
