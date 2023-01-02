@@ -25,6 +25,7 @@ public class CartService {
 
     public CartDTO get(Integer id) {
         Cart savedCart = cartRepository.get(id);
-        return modelMapper.map(savedCart, CartDTO.class);
+
+        return savedCart != null ? modelMapper.map(savedCart, CartDTO.class) : null;
     }
 }
