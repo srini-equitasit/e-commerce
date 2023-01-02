@@ -3,7 +3,7 @@
   <span> {{title}}</span>
   <span class="tb-spacer"></span>
   <button mat-icon-button   *ngIf="authenticated">
-    <mat-icon>shopping_cart</mat-icon>
+    <mat-icon [matBadge]="cartItemCnt" matBadgeColor="warn">shopping_cart</mat-icon>
   </button>
 
   <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">

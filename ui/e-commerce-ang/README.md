@@ -42,3 +42,9 @@ https://github.com/auth0/auth0-angular/issues/70
 
 ## nginx
 http://nginx.org/en/docs/windows.html
+
+## ngrx store for dependencies
+https://www.concretepage.com/ngrx/ngrx-store-example
+
+## ngrx store example
+https://codeburst.io/angular-10-ngrx-store-by-example-333cbf16862c

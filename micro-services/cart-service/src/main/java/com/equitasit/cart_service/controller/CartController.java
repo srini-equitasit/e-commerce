@@ -1,12 +1,14 @@
 package com.equitasit.cart_service.controller;
 
-import com.equitasit.cart_service.dto.CartDTO;
+import com.equitasit.cart_service.dto.CartItemDTO;
 import com.equitasit.cart_service.service.CartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("cart")
@@ -16,25 +18,40 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @PostMapping
-    public ResponseEntity save(@RequestBody CartDTO cartDTO) {
+    @PostMapping("{id}")
+    public ResponseEntity save(@PathVariable("id") Integer userId, @RequestBody CartItemDTO cartDTO) {
 
         log.debug("enter");
         log.info("saving the cart info {}", cartDTO);
-        CartDTO savedCartDTO = cartService.save(cartDTO);
-        log.info("saved cart info {}", savedCartDTO);
+        List<CartItemDTO> savedCartDTOList = cartService.save(userId, cartDTO);
+        log.info("saved cart info {}", savedCartDTOList);
         log.debug("exit");
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCartDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCartDTOList);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity get(@PathVariable("id") Integer id) {
+    public ResponseEntity get(@PathVariable("id") Integer userId) {
         log.debug("enter");
-        log.info("getting cart info for id {}", id);
-        CartDTO cartDTO = cartService.get(id);
-        log.info("cart info {}", cartDTO);
+        log.info("getting cart info for userId {}", userId);
+        List<CartItemDTO> savedCartDTOList = cartService.get(userId);
+        log.info("cart info {}", savedCartDTOList);
         log.debug("exit");
-        return ResponseEntity.ok(cartDTO);
+        return ResponseEntity.ok(savedCartDTOList);
+    }
+
+    @GetMapping("{id}/count")
+    public Integer getCartCount(Integer userId) {
+
+        return cartService.getCartCount(userId);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity remove(@PathVariable("id") Integer userId) {
+        log.debug("enter");
+        log.info("removing cart info for userId {}", userId);
+        cartService.remove(userId);
+        log.debug("exit");
+        return ResponseEntity.noContent().build();
     }
 
 }

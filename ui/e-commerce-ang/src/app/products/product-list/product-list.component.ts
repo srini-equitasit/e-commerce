@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../service/product.service";
 import {Product} from "../model/product";
+import {ProductPrice} from "../model/product-price";
+import {Store} from "@ngrx/store";
+import {ECommerceAppState} from "../../state-mgmt/e-commerce-app.state";
+import {ADD_CART_ITEM} from "../../state-mgmt/actions/cart.action";
+import {CartItem} from "../../model/cart-item";
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +22,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = []
 
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private store: Store<ECommerceAppState>) {
   }
 
   ngOnInit(): void {
@@ -40,6 +45,20 @@ export class ProductListComponent implements OnInit {
 
     })
     // obs.subscribe()
+  }
+
+  addToCart(product: Product, productPrice?: ProductPrice) {
+    console.log('productPrice = ' + productPrice)
+    this.store.dispatch({
+      type: ADD_CART_ITEM,
+      payload: <CartItem>{
+
+        userId: 1,
+        qty: 1,
+        productId: productPrice?.productId,
+        price: productPrice?.price,
+      }
+    });
   }
 
 }

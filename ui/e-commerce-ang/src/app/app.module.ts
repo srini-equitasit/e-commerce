@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {StoreModule} from '@ngrx/store';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -11,6 +12,7 @@ import {ECommerceGeneralModule} from "./general/general.module";
 
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthHttpInterceptor} from '@auth0/auth0-angular';
+import {cartReducer} from "./state-mgmt/reducers/cart-reducer";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import {AuthHttpInterceptor} from '@auth0/auth0-angular';
         }],
       },
     }),
+    StoreModule.forRoot({cartItems: cartReducer}),
     ECommerceGeneralModule,
   ],
   providers: [
@@ -41,6 +44,7 @@ import {AuthHttpInterceptor} from '@auth0/auth0-angular';
       multi: true,
     }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

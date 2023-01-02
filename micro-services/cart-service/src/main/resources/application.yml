@@ -1,15 +1,36 @@
 server:
   port: 9086
-  servlet:
-    session:
-      timeout: 1200
 spring:
-  cache:
-    type: redis
   redis:
-    namespace: 'e-commerce:cart' # Namespace for keys used to store sessions.
+#    namespace: 'e-commerce:cart' # Namespace for keys used to store sessions.
     flush-mode: on_save # Sessions flush mode.
     port: ${redis_port}
     host: ${redis_host}
     password: ${redis_pwd}
     username: ${redis_user}
+
+#open docs
+springdoc:
+  api-docs:
+    path: /api-docs
+
+
+#actuator
+management:
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    shutdown.enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+    health:
+      show-details: ALWAYS
+      probes:
+        enabled: true
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true

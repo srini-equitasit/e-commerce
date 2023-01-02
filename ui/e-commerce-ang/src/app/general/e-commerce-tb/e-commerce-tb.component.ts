@@ -1,7 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService, User} from "@auth0/auth0-angular";
 import {UserService} from "../service/user.service";
-import {UserDto} from "../model/user.dto";
+import {UserDto} from "../../model/user.dto";
+import {CartItem} from "../../model/cart-item";
+import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import {ECommerceAppState} from "../../state-mgmt/e-commerce-app.state";
 
 @Component({
   selector: 'app-e-commerce-tb',
@@ -16,7 +20,11 @@ export class ECommerceTbComponent implements OnInit {
 
   userProfile?: User | null | undefined;
 
-  constructor(public auth: AuthService, private userService: UserService) {
+  cartItems$?: Observable<CartItem[]>;
+
+  cartItemCnt = 0;
+
+  constructor(public auth: AuthService, private userService: UserService, private store: Store<ECommerceAppState>) {
   }
 
   ngOnInit(): void {
@@ -32,6 +40,13 @@ export class ECommerceTbComponent implements OnInit {
 
       this.updateLastLogin(data);
     })
+
+    this.cartItems$ = this.store.select(state => state.cartItems);
+
+    this.cartItems$.subscribe(data => {
+      this.cartItemCnt = data.length
+    });
+
   }
 
   updateLastLogin(user: User | undefined | null) {
