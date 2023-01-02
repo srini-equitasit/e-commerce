@@ -13,18 +13,27 @@ public class GatewayController {
         ResponseEntity responseEntity = ResponseEntity.noContent().build();
         return Mono.just(responseEntity);
     }
+
     @GetMapping("/seller/fallback")
     Mono<ResponseEntity> getSellerFallback() {
         ResponseEntity responseEntity = ResponseEntity.noContent().build();
         return Mono.just(responseEntity);
     }
+
     @GetMapping("/price/fallback")
     Mono<ResponseEntity> getPriceFallback() {
         ResponseEntity responseEntity = ResponseEntity.noContent().build();
         return Mono.just(responseEntity);
     }
+
     @GetMapping("/user/fallback")
     Mono<ResponseEntity> getUserFallback() {
+        ResponseEntity responseEntity = ResponseEntity.noContent().build();
+        return Mono.just(responseEntity);
+    }
+
+    @GetMapping("/cart/fallback")
+    Mono<ResponseEntity> getCartFallback() {
         ResponseEntity responseEntity = ResponseEntity.noContent().build();
         return Mono.just(responseEntity);
     }

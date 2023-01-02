@@ -13,6 +13,8 @@ import {ECommerceGeneralModule} from "./general/general.module";
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthHttpInterceptor} from '@auth0/auth0-angular';
 import {cartReducer} from "./state-mgmt/reducers/cart-reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {CartEffect} from "./state-mgmt/effects/cart-effect";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {cartReducer} from "./state-mgmt/reducers/cart-reducer";
         }],
       },
     }),
+    EffectsModule.forRoot([CartEffect]),
     StoreModule.forRoot({cartItems: cartReducer}),
     ECommerceGeneralModule,
   ],

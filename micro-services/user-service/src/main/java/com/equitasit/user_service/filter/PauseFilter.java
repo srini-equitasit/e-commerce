@@ -1,6 +1,7 @@
 package com.equitasit.user_service.filter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
+@ConditionalOnProperty(name = "enablePause", havingValue = "true")
 public class PauseFilter implements Filter {
 
     private Random random = new Random();

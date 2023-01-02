@@ -62,6 +62,15 @@ public class GatewayRoutesConfig {
                         .metadata(CONNECT_TIMEOUT_ATTR, 2000)
                         .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
                         .uri(ecommerceAppConfig.getUserUrl()))
+                .route(p -> p.path("/cart/**")
+
+                        .filters(f -> f.retry(rc -> rc.allMethods().setRetries(3).setBackoff(getBackoffConfig()))
+                                .circuitBreaker(cb -> cb.setName("cart")
+                                        .setFallbackUri("forward:/cart/fallback")
+                                ))
+                        .metadata(CONNECT_TIMEOUT_ATTR, 2000)
+                        .metadata(RESPONSE_TIMEOUT_ATTR, 3000)
+                        .uri(ecommerceAppConfig.getUserUrl()))
                 .build();
         log.info("routes configure end , routeLocator {} ", routeLocator);
         return routeLocator;

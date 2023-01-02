@@ -118,6 +118,7 @@
                         </exclude>
                     </excludes>
                     <systemPropertyVariables>
+                        <enable_pause>false</enable_pause>
 
                         <!--                        <spring.profiles.active>prod</spring.profiles.active>-->
                         <redis_host>redis-19537.c8.us-east-1-4.ec2.cloud.redislabs.com</redis_host>

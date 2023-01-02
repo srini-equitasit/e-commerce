@@ -60,6 +60,12 @@ resilience4j:
         failureRateThreshold: 50                  #percent
         waitDurationInOpenState: 10000            #10 seconds
         registerHealthIndicator: true
+      cart:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
   timelimiter:
     instances:
       product:
@@ -69,6 +75,8 @@ resilience4j:
       seller:
         timeoutDuration: 4s
       user:
+        timeoutDuration: 4s
+      cart:
         timeoutDuration: 4s
 
 
@@ -112,3 +120,4 @@ product:
     sellerUrl: ${seller_url}
     productUrl: ${product_url}
     userUrl: ${user_url}
+    cartItemsUrl: ${cart_items_url}

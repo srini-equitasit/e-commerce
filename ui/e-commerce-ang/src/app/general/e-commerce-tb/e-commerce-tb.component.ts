@@ -6,6 +6,8 @@ import {CartItem} from "../../model/cart-item";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import {ECommerceAppState} from "../../state-mgmt/e-commerce-app.state";
+import {ADD_CART_ITEM} from "../../state-mgmt/actions/cart.action";
+import * as fromActions from '../../state-mgmt/actions/cart.action';
 
 @Component({
   selector: 'app-e-commerce-tb',
@@ -46,6 +48,8 @@ export class ECommerceTbComponent implements OnInit {
     this.cartItems$.subscribe(data => {
       this.cartItemCnt = data.length
     });
+
+    this.store.dispatch(fromActions.LOAD_CART_ITEMS_ACTION({payload: 2}));
 
   }
 

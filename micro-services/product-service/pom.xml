@@ -128,6 +128,7 @@
                         </exclude>
                     </excludes>
                     <systemPropertyVariables>
+                        <enable_pause>false</enable_pause>
                         <db_url>jdbc:mysql://localhost:3306/product?createDatabaseIfNotExist=true</db_url>
                         <db_user>root</db_user>
                         <db_pwd>root</db_pwd>

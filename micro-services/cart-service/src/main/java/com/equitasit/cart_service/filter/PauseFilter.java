@@ -1,4 +1,4 @@
-package com.equitasit.product_service.filter;
+package com.equitasit.cart_service.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 

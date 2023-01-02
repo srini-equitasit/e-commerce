@@ -112,6 +112,7 @@
                         <seller_url>http://localhost:9083</seller_url>
                         <product_url>http://localhost:9081</product_url>
                         <user_url>http://localhost:9085</user_url>
+                        <cart_items_url>http://localhost:9086</cart_items_url>
 
                         <zipkin_url>http://localhost:9411</zipkin_url>
 

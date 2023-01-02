@@ -48,3 +48,5 @@ management:
       enabled: true
     livenessstate:
       enabled: true
+
+enablePause: ${enable_pause}

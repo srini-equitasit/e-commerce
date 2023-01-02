@@ -1,9 +1,18 @@
 import {CartItem} from "../../model/cart-item";
-import {ADD_CART_ITEM, CartAction, REMOVE_CART_ITEM, UPDATE_CART_ITEM} from "../actions/cart.action";
+import {
+  ADD_CART_ITEM,
+  CartAction,
+  LOAD_CART_ITEMS_SUCCESS,
+  REMOVE_CART_ITEM,
+  UPDATE_CART_ITEM
+} from "../actions/cart.action";
 
 
 export function cartReducer(state: CartItem[] = [], action: any) {
   switch (action.type) {
+
+    case LOAD_CART_ITEMS_SUCCESS:
+      return [...state, ...action.payload];
 
     case ADD_CART_ITEM:
       return [...state, action.payload];
