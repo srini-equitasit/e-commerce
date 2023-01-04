@@ -12,9 +12,11 @@ import {ECommerceGeneralModule} from "./general/general.module";
 
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthHttpInterceptor} from '@auth0/auth0-angular';
-import {cartReducer} from "./state-mgmt/reducers/cart-reducer";
+import {cartCntReducer, cartReducer, cartStatusReducer} from "./state-mgmt/reducers/cart-reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {CartEffect} from "./state-mgmt/effects/cart-effect";
+import {UserEffect} from "./state-mgmt/effects/user-effect";
+import {userReducer} from "./state-mgmt/reducers/user-reducer";
 
 @NgModule({
   declarations: [
@@ -36,8 +38,13 @@ import {CartEffect} from "./state-mgmt/effects/cart-effect";
         }],
       },
     }),
-    EffectsModule.forRoot([CartEffect]),
-    StoreModule.forRoot({cartItems: cartReducer}),
+    EffectsModule.forRoot([CartEffect, UserEffect]),
+    StoreModule.forRoot({
+      cartItems: cartReducer,
+      user: userReducer,
+      cart: cartCntReducer,
+      cartStatus: cartStatusReducer
+    }),
     ECommerceGeneralModule,
   ],
   providers: [

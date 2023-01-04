@@ -1,0 +1,14 @@
+.table-container {
+  max-height: 600px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

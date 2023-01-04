@@ -1,5 +1,6 @@
 package com.equitasit.cart_service.controller;
 
+import com.equitasit.cart_service.dto.CartDTO;
 import com.equitasit.cart_service.dto.CartItemDTO;
 import com.equitasit.cart_service.service.CartService;
 import lombok.extern.slf4j.Slf4j;
@@ -40,9 +41,13 @@ public class CartController {
     }
 
     @GetMapping("{id}/count")
-    public Integer getCartCount(Integer userId) {
+    public ResponseEntity getCartCount(@PathVariable("id") Integer userId) {
+        log.debug("enter");
+        CartDTO cartDTO = cartService.getCartCount(userId);
 
-        return cartService.getCartCount(userId);
+        log.info("cartDTO {} ", cartDTO);
+        log.debug("exit");
+        return ResponseEntity.ok(cartDTO);
     }
 
     @DeleteMapping("{id}")
@@ -50,6 +55,15 @@ public class CartController {
         log.debug("enter");
         log.info("removing cart info for userId {}", userId);
         cartService.remove(userId);
+        log.debug("exit");
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity removeProduct(@RequestBody CartItemDTO cartItemDTO) {
+        log.debug("enter");
+        log.info("removing cart info for userId {}", cartItemDTO);
+        cartService.remove(cartItemDTO.getUserId(), cartItemDTO.getProductId());
         log.debug("exit");
         return ResponseEntity.noContent().build();
     }

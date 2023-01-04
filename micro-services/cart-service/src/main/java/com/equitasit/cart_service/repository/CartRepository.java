@@ -7,12 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class CartRepository {
 
     private static final String CART_KEY = "CART";
-    private static final String CART_CNT_KEY = "CART_CNT";
+
 
     private HashOperations hashOperations;
 
@@ -40,7 +41,7 @@ public class CartRepository {
         }
 
         this.hashOperations.put(CART_KEY, userId, cartItemList);
-        this.hashOperations.put(CART_CNT_KEY, userId, cartItemList.size());
+
         return cartItemList;
     }
 
@@ -55,7 +56,14 @@ public class CartRepository {
 
     public Integer getCartCount(Integer userId) {
 
-        Integer cartCnt = (Integer) this.hashOperations.get(CART_KEY, userId);
+        List<CartItem> cartItemList = (List<CartItem>) this.hashOperations.get(CART_KEY, userId);
+
+        Integer cartCnt = 0;
+        if (cartItemList != null) {
+            for (CartItem ci : cartItemList) {
+                cartCnt = cartCnt + ci.getQty();
+            }
+        }
 
         return cartCnt;
     }
@@ -64,7 +72,17 @@ public class CartRepository {
     public void remove(Integer userId) {
 
         this.hashOperations.delete(CART_KEY, userId);
-        this.hashOperations.delete(CART_CNT_KEY, userId);
+
+
+    }
+
+    public void remove(Integer userId, Integer prodId) {
+        List<CartItem> cartItemList = (List<CartItem>) this.hashOperations.get(CART_KEY, userId);
+        if (cartItemList != null) {
+            List<CartItem> filteredList = cartItemList.stream().filter(ci -> !ci.getProductId().equals(prodId)).collect(Collectors.toList());
+            this.hashOperations.put(CART_KEY, userId, filteredList);
+        }
+
 
     }
 }

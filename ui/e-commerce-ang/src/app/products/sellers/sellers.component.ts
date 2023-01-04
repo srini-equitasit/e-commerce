@@ -12,6 +12,8 @@ export class SellersComponent implements OnInit {
 
   sellers?: ProductSeller[];
 
+  loading = false;
+
   @Input()
   productId?: number;
 
@@ -22,9 +24,20 @@ export class SellersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadingSellers();
+  }
+
+  loadingSellers() {
+    this.loading = true;
     const obs = this.productService.getSellers(this.productId);
-    obs.subscribe(data => {
-      this.sellers = data;
+    obs.subscribe({
+      next: data => {
+        this.sellers = data;
+        this.loading = false;
+      },
+      error: err => {
+        this.loading = false;
+      }
     })
   }
 

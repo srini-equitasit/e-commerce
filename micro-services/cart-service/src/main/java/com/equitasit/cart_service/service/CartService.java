@@ -1,5 +1,6 @@
 package com.equitasit.cart_service.service;
 
+import com.equitasit.cart_service.dto.CartDTO;
 import com.equitasit.cart_service.dto.CartItemDTO;
 import com.equitasit.cart_service.entity.CartItem;
 import com.equitasit.cart_service.repository.CartRepository;
@@ -27,7 +28,7 @@ public class CartService {
     }
 
     public List<CartItemDTO> get(Integer userId) {
-        List<CartItem> cartItemList =  cartRepository.get(userId);
+        List<CartItem> cartItemList = cartRepository.get(userId);
 
         return cartItemList.stream().map(savedCart -> modelMapper.map(savedCart, CartItemDTO.class)).collect(Collectors.toList());
     }
@@ -36,7 +37,15 @@ public class CartService {
         cartRepository.remove(userId);
     }
 
-    public  Integer getCartCount(Integer userId) {
-        return cartRepository.getCartCount(userId);
+    public void remove(Integer userId, Integer prodId) {
+        cartRepository.remove(userId, prodId);
+    }
+
+
+    public CartDTO getCartCount(Integer userId) {
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setCount(cartRepository.getCartCount(userId));
+        cartDTO.setUserId(userId);
+        return cartDTO;
     }
 }

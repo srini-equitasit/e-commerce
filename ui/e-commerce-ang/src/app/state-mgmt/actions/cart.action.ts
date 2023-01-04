@@ -3,13 +3,12 @@ import {createAction, props} from '@ngrx/store';
 
 export const LOAD_CART_ITEMS_SUCCESS = 'LOAD_CART_ITEMS_SUCCESS';
 
-export const LOAD_CART_ITEMS = 'LOAD_CART_ITEMS';
+export const LOAD_CART_CNT_SUCCESS = 'LOAD_CART_CNT_SUCCESS';
 
-export const ADD_CART_ITEM = 'ADD_CART_ITEM';
+export const LOAD_CART_ITEMS_STATUS_IN_PROGRESS = 'LOAD_CART_ITEMS_STATUS_IN_PROGRESS';
 
-export const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
+export const LOAD_CART_ITEMS_STATUS_COMPLETED = 'LOAD_CART_ITEMS_STATUS_COMPLETED';
 
-export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 
 export class CartAction {
 
@@ -18,6 +17,15 @@ export class CartAction {
   }
 }
 
-export const LOAD_CART_ITEMS_ACTION = createAction(LOAD_CART_ITEMS, props<{ payload: number }>());
+export const LOAD_CART_ITEMS_ACTION = createAction('LOAD_CART_ITEMS', props<{ payload: number }>());
+
+export const ADD_CART_ITEMS_ACTION = createAction('ADD_CART_ITEM', props<{ payload: CartItem }>());
+
+export const COUNT_CART_ITEMS_ACTION = createAction('COUNT_CART_ITEMS', props<{ payload: number }>());
+
+export const REMOVE_CART_ITEMS_ACTION = createAction('REMOVE_CART_ITEM', props<{ payload: CartItem }>());
+
+
+
 
 

@@ -4,8 +4,12 @@ import {Product} from "../model/product";
 import {ProductPrice} from "../model/product-price";
 import {Store} from "@ngrx/store";
 import {ECommerceAppState} from "../../state-mgmt/e-commerce-app.state";
-import {ADD_CART_ITEM} from "../../state-mgmt/actions/cart.action";
+
 import {CartItem} from "../../model/cart-item";
+import {ADD_CART_ITEMS_ACTION} from "../../state-mgmt/actions/cart.action";
+import {Observable} from "rxjs";
+import {UserDto} from "../../model/user.dto";
+import * as fromActions from "../../state-mgmt/actions/cart.action";
 
 @Component({
   selector: 'app-product-list',
@@ -21,12 +25,26 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = []
 
+  userInfo$?: Observable<UserDto>;
+
+  userInfo?: UserDto;
+
 
   constructor(private productService: ProductService, private store: Store<ECommerceAppState>) {
   }
 
   ngOnInit(): void {
     this.loadProducts();
+    this.loadUserInfo();
+  }
+
+  loadUserInfo() {
+    this.userInfo$ = this.store.select(state => state.user);
+
+    this.userInfo$.subscribe(data => {
+
+      this.userInfo = data;
+    });
   }
 
   loadProducts() {
@@ -48,17 +66,17 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: Product, productPrice?: ProductPrice) {
-    console.log('productPrice = ' + productPrice)
-    this.store.dispatch({
-      type: ADD_CART_ITEM,
-      payload: <CartItem>{
-
-        userId: 1,
+    console.log('productPrice = ' + productPrice);
+    this.store.dispatch(ADD_CART_ITEMS_ACTION({
+      payload: {
+        userId: this.userInfo?.id,
         qty: 1,
         productId: productPrice?.productId,
         price: productPrice?.price,
-      }
-    });
+      } as CartItem
+    }));
+
+
   }
 
 }

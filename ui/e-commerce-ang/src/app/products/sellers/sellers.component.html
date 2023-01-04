@@ -5,10 +5,10 @@
 <!--  </mat-chip>-->
 
 <!--</mat-chip-list>-->
-
+<mat-spinner diameter="25" *ngIf="loading"></mat-spinner>
 <p>
 
-  <button mat-fab color="accent"
+  <button mat-fab color="accent" *ngIf="!loading"
           [matTooltip]="getSellerNames()"
           [matBadge]="sellers?.length" matBadgePosition="after" matBadgeColor="accent">
     Sellers

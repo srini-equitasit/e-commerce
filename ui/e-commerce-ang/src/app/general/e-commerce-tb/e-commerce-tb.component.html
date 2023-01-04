@@ -2,8 +2,12 @@
 
   <span> {{title}}</span>
   <span class="tb-spacer"></span>
-  <button mat-icon-button   *ngIf="authenticated">
-    <mat-icon [matBadge]="cartItemCnt" matBadgeColor="warn">shopping_cart</mat-icon>
+
+  <button mat-icon-button *ngIf="authenticated" routerLink="cart">
+    <div class="shop-cart">
+      <mat-spinner *ngIf="cartLoading" diameter="25" color="warn"></mat-spinner>
+      <mat-icon *ngIf="!cartLoading" [matBadge]="cartItemCnt" matBadgeColor="warn">shopping_cart</mat-icon>
+    </div>
   </button>
 
   <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu">
@@ -23,7 +27,17 @@
 
     <button mat-menu-item>
       <mat-icon>person</mat-icon>
-      <span>{{userProfile?.name}}</span>
+      <span>{{userInfo?.fname}}</span>
+    </button>
+
+    <button mat-menu-item routerLink="products">
+      <mat-icon>category</mat-icon>
+      <span>Products</span>
+    </button>
+
+    <button mat-menu-item routerLink="cart">
+      <mat-icon>shopping_cart</mat-icon>
+      <span>Cart</span>
     </button>
 
     <button mat-menu-item (click)="logout()">
