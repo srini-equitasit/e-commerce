@@ -6,6 +6,8 @@ import {AuthGuard} from "@auth0/auth0-angular";
 import {HomeComponent} from "../general/home/home.component";
 import {LogoutComponent} from "../general/logout/logout.component";
 import {MaterialProductModule} from "../material.product.module";
+import { EditCartComponent } from './edit-cart/edit-cart.component';
+import { BuyCartComponent } from './buy-cart/buy-cart.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CartItemsComponent
+    CartItemsComponent,
+    EditCartComponent,
+    BuyCartComponent
   ],
   imports: [
     CommonModule,
