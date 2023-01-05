@@ -118,6 +118,7 @@
 
                         <audience_id>http://e-commerce-gateway:9080</audience_id>
                         <jwt_issuer_uri>https://dev-gh3wgihw.jp.auth0.com/</jwt_issuer_uri>
+                        <enable_security>false</enable_security>
 
                     </systemPropertyVariables>
 
