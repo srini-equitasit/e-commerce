@@ -4,7 +4,7 @@ import {CartService} from "../../service/cart.service";
 import {
   LOAD_CART_CNT_SUCCESS, LOAD_CART_ITEMS_STATUS_COMPLETED,
   LOAD_CART_ITEMS_STATUS_IN_PROGRESS,
-  LOAD_CART_ITEMS_SUCCESS
+  LOAD_CART_ITEMS_SUCCESS, UPDATE_CART_ITEMS_ACTION
 } from "../actions/cart.action";
 import {catchError, debounceTime, map, mergeMap, switchMap} from 'rxjs/operators';
 import {EMPTY} from "rxjs";
@@ -58,6 +58,30 @@ export class CartEffect {
         .pipe(
           switchMap(cartItem => [
             fromActions.COUNT_CART_ITEMS_ACTION({payload: cartItem[0].userId}), {
+              type: LOAD_CART_ITEMS_STATUS_COMPLETED,
+              payload: {loadingStatus: false} as CartDto
+            }
+          ]),
+          catchError(() => EMPTY)
+        ))
+    );
+  });
+
+  updateCartItems$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(fromActions.UPDATE_CART_ITEMS_ACTION),
+      tap(() => this.store.dispatch({
+        type: LOAD_CART_ITEMS_STATUS_IN_PROGRESS,
+        payload: {loadingStatus: true} as CartDto
+      })),
+      debounceTime(200),
+      map(action => action.payload),
+      mergeMap((userId) => this.cartService.save(userId)
+        .pipe(
+          switchMap(cartItem => [
+            fromActions.COUNT_CART_ITEMS_ACTION({payload: cartItem[0].userId}),
+            fromActions.LOAD_CART_ITEMS_ACTION({payload: cartItem[0].userId}),
+            {
               type: LOAD_CART_ITEMS_STATUS_COMPLETED,
               payload: {loadingStatus: false} as CartDto
             }

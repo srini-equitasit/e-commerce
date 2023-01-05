@@ -8,6 +8,7 @@ import {LogoutComponent} from "../general/logout/logout.component";
 import {MaterialProductModule} from "../material.product.module";
 import { EditCartComponent } from './edit-cart/edit-cart.component';
 import { BuyCartComponent } from './buy-cart/buy-cart.component';
+import {FormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MaterialProductModule,
+    FormsModule,
     [RouterModule.forChild(routes)]
   ]
 })

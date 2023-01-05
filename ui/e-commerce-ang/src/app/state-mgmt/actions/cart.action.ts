@@ -21,6 +21,8 @@ export const LOAD_CART_ITEMS_ACTION = createAction('LOAD_CART_ITEMS', props<{ pa
 
 export const ADD_CART_ITEMS_ACTION = createAction('ADD_CART_ITEM', props<{ payload: CartItem }>());
 
+export const UPDATE_CART_ITEMS_ACTION = createAction('ADD_CART_ITEM', props<{ payload: CartItem }>());
+
 export const COUNT_CART_ITEMS_ACTION = createAction('COUNT_CART_ITEMS', props<{ payload: number }>());
 
 export const REMOVE_CART_ITEMS_ACTION = createAction('REMOVE_CART_ITEM', props<{ payload: CartItem }>());

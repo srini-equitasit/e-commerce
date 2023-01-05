@@ -1,1 +1,25 @@
-<p>edit-cart works!</p>
+<h1 mat-dialog-title>Edit Cart</h1>
+<div mat-dialog-content class="edit-con">
+  <p></p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Product Id</mat-label>
+    <input disabled matInput [(ngModel)]="cartItem.productId">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Price</mat-label>
+    <input disabled matInput [(ngModel)]="cartItem.price">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Quantity</mat-label>
+    <input matInput [(ngModel)]="cartItem.qty">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onOkClick()" cdkFocusInitial>Ok</button>
+</div>
+

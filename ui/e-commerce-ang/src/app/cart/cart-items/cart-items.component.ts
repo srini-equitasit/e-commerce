@@ -5,6 +5,9 @@ import {Observable} from "rxjs";
 import {CartItem} from "../../model/cart-item";
 import {LOAD_CART_ITEMS_ACTION, REMOVE_CART_ITEMS_ACTION} from "../../state-mgmt/actions/cart.action";
 import {UserDto} from "../../model/user.dto";
+import {MatDialog} from "@angular/material/dialog";
+import {EditCartComponent} from "../edit-cart/edit-cart.component";
+import {BuyCartComponent} from "../buy-cart/buy-cart.component";
 
 
 @Component({
@@ -24,7 +27,7 @@ export class CartItemsComponent implements OnInit {
 
   userInfo?: UserDto;
 
-  constructor(private store: Store<ECommerceAppState>) {
+  constructor(private store: Store<ECommerceAppState>, public dialog: MatDialog) {
   }
 
 
@@ -68,6 +71,24 @@ export class CartItemsComponent implements OnInit {
   remove(cartItem: CartItem) {
 
     this.store.dispatch(REMOVE_CART_ITEMS_ACTION({payload: cartItem}));
+  }
+
+  editCart(cartItem: CartItem) {
+    const dialogRef = this.dialog.open(EditCartComponent, {
+      data: cartItem
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  buyCart() {
+    const dialogRef = this.dialog.open(BuyCartComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

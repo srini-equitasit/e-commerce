@@ -60,9 +60,7 @@ public class CartRepository {
 
         Integer cartCnt = 0;
         if (cartItemList != null) {
-            for (CartItem ci : cartItemList) {
-                cartCnt = cartCnt + ci.getQty();
-            }
+            cartCnt = cartItemList.size();
         }
 
         return cartCnt;

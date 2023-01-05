@@ -1,11 +1,8 @@
-export interface CartItem {
+export class CartItem {
 
-  userId: number;
 
-  qty: number;
+  constructor(public userId: number, public qty: number, public productId: number, public price: number) {
 
-  productId: number;
-
-  price: number;
+  }
 
 }
