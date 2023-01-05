@@ -85,7 +85,6 @@ public class AccountService {
 
         account.setAmount(amount);
 
-
         accountRepository.save(account);
 
         accountLogRepository.save(accountLog);
@@ -111,10 +110,9 @@ public class AccountService {
         Account account = existingAccount.get();
         Double amount = account.getAmount() + transactionDTO.getAmount();
 
+        AccountLog accountLog = createAccountLog(transactionDTO, account, "CREDIT");
 
         account.setAmount(amount);
-
-        AccountLog accountLog = createAccountLog(transactionDTO, account, "CREDIT");
 
         accountRepository.save(account);
 
