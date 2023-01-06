@@ -19,22 +19,35 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
-   @Value("${auth0.audience}")
-   private String audience;
+    @Value("${auth0.audience}")
+    private String audience;
 
-   @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
-   private String issuer;
+    @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
+    private String issuer;
 
     private static final String ACTUATOR_ENDPOINT_ROOT_PATTERN = "/actuator";
-    private static final String ACTUATOR_ENDPOINT_PATTERN = ACTUATOR_ENDPOINT_ROOT_PATTERN+"/*";
+    private static final String ACTUATOR_ENDPOINT_PATTERN = ACTUATOR_ENDPOINT_ROOT_PATTERN + "/*";
 
 
     @Bean
+    @ConditionalOnProperty(name = "product.app.enableSecurity", havingValue = "false")
+    SecurityWebFilterChain NoSecuritySpringWebFilterChain(ServerHttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeExchange()
+                .anyExchange()
+                .permitAll();
+
+        return http.build();
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "product.app.enableSecurity", havingValue = "true")
     SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeExchange()
-                .pathMatchers(ACTUATOR_ENDPOINT_ROOT_PATTERN,ACTUATOR_ENDPOINT_PATTERN)
+                .pathMatchers(ACTUATOR_ENDPOINT_ROOT_PATTERN, ACTUATOR_ENDPOINT_PATTERN)
                 .permitAll()
 //                .pathMatchers("/greet")
 //                .hasAuthority("SCOPE_canGreet")
@@ -48,6 +61,7 @@ public class SecurityConfig {
 
 
     @Bean
+    @ConditionalOnProperty(name = "product.app.enableSecurity", havingValue = "true")
     JwtDecoder jwtDecoder() {
         /*
         By default, Spring Security does not validate the "aud" claim of the token, to ensure that this token is

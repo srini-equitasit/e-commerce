@@ -53,6 +53,9 @@ public class GatewayRoutesConfig {
                 .route(p -> getRouteConfig(p, "user", ecommerceAppConfig.getUserUrl()))
                 .route(p -> getRouteConfig(p, "cart", ecommerceAppConfig.getCartItemsUrl()))
 
+                .route(p -> getRouteConfig(p, "payment", ecommerceAppConfig.getPaymentsUrl()))
+                .route(p -> getRouteConfig(p, "inventory", ecommerceAppConfig.getInventoryUrl()))
+
 
                 .build();
         log.info("routes configure end , routeLocator {} ", routeLocator);

@@ -121,4 +121,6 @@ product:
     productUrl: ${product_url}
     userUrl: ${user_url}
     cartItemsUrl: ${cart_items_url}
+    paymentsUrl: ${payments_url}
+    inventoryUrl: ${inventory_url}
     enableSecurity: ${enable_security}
