@@ -95,7 +95,7 @@ public class AccountService {
         AccountLog accountLog = new AccountLog();
         accountLog.setType(type);
         accountLog.setBalance(account.getAmount());
-        accountLog.setAmount(transactionDTO.getAmount());
+        accountLog.setTxAmount(transactionDTO.getAmount());
         accountLog.setUserId(transactionDTO.getUserId());
         return accountLog;
     }
