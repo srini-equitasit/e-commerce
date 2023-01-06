@@ -57,6 +57,9 @@ public class GatewayRoutesConfig {
                 .route(p -> getRouteConfig(p, "inventory", ecommerceAppConfig.getInventoryUrl()))
 
 
+                .route(p -> getRouteConfig(p, "notification", ecommerceAppConfig.getNotificationUrl()))
+
+
                 .build();
         log.info("routes configure end , routeLocator {} ", routeLocator);
         return routeLocator;

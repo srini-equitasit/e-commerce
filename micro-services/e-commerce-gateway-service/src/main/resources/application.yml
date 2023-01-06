@@ -123,4 +123,5 @@ product:
     cartItemsUrl: ${cart_items_url}
     paymentsUrl: ${payments_url}
     inventoryUrl: ${inventory_url}
+    notificationUrl: ${notification_url}
     enableSecurity: ${enable_security}

@@ -26,4 +26,6 @@ public class ECommerceAppConfig {
     private String inventoryUrl;
 
     private String paymentsUrl;
+
+    private String notificationUrl;
 }

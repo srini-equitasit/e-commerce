@@ -115,6 +115,7 @@
                         <cart_items_url>http://localhost:9086</cart_items_url>
                         <payments_url>http://localhost:9087</payments_url>
                         <inventory_url>http://localhost:9088</inventory_url>
+                        <notification_url>http://localhost:9089</notification_url>
 
 
                         <zipkin_url>http://localhost:9411</zipkin_url>
