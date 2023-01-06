@@ -25,6 +25,6 @@ public class Inventory {
     private Integer sellerId;
 
     @Id
-    @Column(name = "seller_id")
+    @Column(name = "product_id")
     private Integer productId;
 }
