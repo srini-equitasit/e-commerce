@@ -98,6 +98,7 @@ public class InventoryService {
 
     }
 
+    @Transactional
     public void credit(InventoryTxDTO inventoryTxDTO) {
         Optional<Inventory> optionalInventory = inventoryRepository.findById(new InventoryId(inventoryTxDTO.getSellerId(), inventoryTxDTO.getProductId()));
         if (!optionalInventory.isPresent()) {

@@ -38,7 +38,7 @@ public class InventoryController {
         InventoryDTO savedInventoryDTO = inventoryService.update(inventoryDTO);
         log.info("saved savedInventoryDTO info {}", savedInventoryDTO);
         log.debug("exit");
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedInventoryDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(savedInventoryDTO);
     }
 
     @GetMapping("{sellerId}/{productId}")

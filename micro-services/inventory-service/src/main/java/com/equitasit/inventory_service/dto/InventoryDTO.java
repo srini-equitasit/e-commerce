@@ -12,7 +12,6 @@ import lombok.ToString;
 @ToString
 public class InventoryDTO {
 
-    private Integer id;
 
 
     private Integer qty;
