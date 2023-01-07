@@ -66,6 +66,36 @@ resilience4j:
         failureRateThreshold: 50                  #percent
         waitDurationInOpenState: 10000            #10 seconds
         registerHealthIndicator: true
+      payment:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+      inventory:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+      notification:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+      order:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
+      delivery:
+        slidingWindowSize: 10                     #unit request
+        permittedNumberOfCallsInHalfOpenState: 5  #unit request
+        failureRateThreshold: 50                  #percent
+        waitDurationInOpenState: 10000            #10 seconds
+        registerHealthIndicator: true
   timelimiter:
     instances:
       product:
@@ -77,6 +107,16 @@ resilience4j:
       user:
         timeoutDuration: 4s
       cart:
+        timeoutDuration: 4s
+      payment:
+        timeoutDuration: 4s
+      inventory:
+        timeoutDuration: 4s
+      notification:
+        timeoutDuration: 4s
+      order:
+        timeoutDuration: 4s
+      delivery:
         timeoutDuration: 4s
 
 
