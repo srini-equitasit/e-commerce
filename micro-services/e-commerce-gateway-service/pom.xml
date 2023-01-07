@@ -120,6 +120,8 @@
                         <inventory_url>http://localhost:9088</inventory_url>
                         <notification_url>http://localhost:9089</notification_url>
 
+                        <delivery_url>http://localhost:9090</delivery_url>
+
 
                         <zipkin_url>http://localhost:9411</zipkin_url>
 

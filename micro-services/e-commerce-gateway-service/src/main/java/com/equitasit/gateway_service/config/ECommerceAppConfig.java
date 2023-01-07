@@ -30,4 +30,6 @@ public class ECommerceAppConfig {
     private String notificationUrl;
 
     private String orderUrl;
+
+    private String deliveryUrl;
 }

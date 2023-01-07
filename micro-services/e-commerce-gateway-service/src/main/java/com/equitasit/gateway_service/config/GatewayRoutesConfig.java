@@ -59,6 +59,7 @@ public class GatewayRoutesConfig {
 
                 .route(p -> getRouteConfig(p, "notification", ecommerceAppConfig.getNotificationUrl()))
                 .route(p -> getRouteConfig(p, "order", ecommerceAppConfig.getOrderUrl()))
+                .route(p -> getRouteConfig(p, "delivery", ecommerceAppConfig.getDeliveryUrl()))
 
 
                 .build();

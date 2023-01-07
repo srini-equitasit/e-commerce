@@ -125,4 +125,5 @@ product:
     inventoryUrl: ${inventory_url}
     notificationUrl: ${notification_url}
     orderUrl: ${order_url}
+    deliveryUrl: ${delivery_url}
     enableSecurity: ${enable_security}
