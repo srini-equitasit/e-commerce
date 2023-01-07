@@ -28,4 +28,6 @@ public class ECommerceAppConfig {
     private String paymentsUrl;
 
     private String notificationUrl;
+
+    private String orderUrl;
 }

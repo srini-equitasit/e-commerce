@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <groupId>com.equitasit</groupId>
-    <artifactId>e-commerce-gateway-service</artifactId>
+    <artifactId>order-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>e-commerce-gateway-service</name>
-    <description>e-commerce-gateway-service</description>
-
+    <name>order-service</name>
+    <description>order-service</description>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
-    </properties>
 
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- added for zip king tracing -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -46,14 +45,48 @@
 
 
         <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>7.15.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+            <version>8.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
         </dependency>
 
         <dependency>
@@ -62,22 +95,6 @@
             <version>1.6.11</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.resilience4j</groupId>
-            <artifactId>resilience4j-micrometer</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
 
     </dependencies>
     <dependencyManagement>
@@ -97,42 +114,31 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
-
                 <configuration>
-
                     <jvmArguments>
                         <!--                        -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005-->
                         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n
                     </jvmArguments>
-
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
                     <systemPropertyVariables>
-
-                        <product_url>http://localhost:9081</product_url>
-                        <price_url>http://localhost:9082</price_url>
-                        <seller_url>http://localhost:9083</seller_url>
-
-                        <order_url>http://localhost:9084</order_url>
-                        <user_url>http://localhost:9085</user_url>
-                        <cart_items_url>http://localhost:9086</cart_items_url>
-
-                        <payments_url>http://localhost:9087</payments_url>
-                        <inventory_url>http://localhost:9088</inventory_url>
-                        <notification_url>http://localhost:9089</notification_url>
-
-
+                        <enable_pause>false</enable_pause>
+                        <db_url>jdbc:mysql://localhost:3306/order?createDatabaseIfNotExist=true</db_url>
+                        <db_user>root</db_user>
+                        <db_pwd>root</db_pwd>
                         <zipkin_url>http://localhost:9411</zipkin_url>
-
-                        <audience_id>http://e-commerce-gateway:9080</audience_id>
-                        <jwt_issuer_uri>https://dev-gh3wgihw.jp.auth0.com/</jwt_issuer_uri>
-                        <enable_security>false</enable_security>
-
+                        <spring.profiles.active>prod</spring.profiles.active>
+                        <db_name>order</db_name>
                     </systemPropertyVariables>
-
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
 </project>
+
+

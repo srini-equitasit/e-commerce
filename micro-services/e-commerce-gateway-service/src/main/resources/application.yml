@@ -124,4 +124,5 @@ product:
     paymentsUrl: ${payments_url}
     inventoryUrl: ${inventory_url}
     notificationUrl: ${notification_url}
+    orderUrl: ${order_url}
     enableSecurity: ${enable_security}
