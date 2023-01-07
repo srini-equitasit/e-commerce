@@ -49,3 +49,4 @@ management:
       enabled: true
 
 enablePause: ${enable_pause}
+fromEmail: ${from_email}

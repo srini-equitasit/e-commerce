@@ -100,6 +100,11 @@
             <artifactId>spring-cloud-starter-aws-ses</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
 
     </dependencies>
     <dependencyManagement>
@@ -146,6 +151,7 @@
                         <zipkin_url>http://localhost:9411</zipkin_url>
                         <spring.profiles.active>prod</spring.profiles.active>
                         <db_name>notification</db_name>
+                        <from_email>srini@equitasitinc.com</from_email>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
