@@ -49,3 +49,20 @@ management:
       enabled: true
 
 enablePause: ${enable_pause}
+
+#camunda properties
+camunda:
+  bpm:
+    filter:
+      create: All tasks
+    admin-user:
+     id: e-commerce
+     password: e-commerce
+     firstName: e-commerce
+
+app:
+  orchestrator:
+    order:
+      inventoryUrl: ${inventory_url}
+      paymentUrl: ${payments_url}
+      deliveryUrl: ${delivery_url}
