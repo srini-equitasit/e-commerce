@@ -20,12 +20,12 @@ public class DeliveryInfoController {
 
 
     @PostMapping
-    public ResponseEntity save(@RequestBody DeliveryInfoDTO ... deliveryInfoDTO) {
+    public ResponseEntity save(@RequestBody DeliveryInfoDTO... deliveryInfoDTO) {
 
         log.debug("enter");
         log.info("saving the delivery info {}", deliveryInfoDTO);
 
-        List<DeliveryInfoDTO> savedDeliveryInfoDTOs= deliveryInfoService.save(deliveryInfoDTO);
+        List<DeliveryInfoDTO> savedDeliveryInfoDTOs = deliveryInfoService.save(deliveryInfoDTO);
         log.info("saved delivery info {}", savedDeliveryInfoDTOs);
         log.debug("exit");
         return ResponseEntity.status(HttpStatus.CREATED).body(savedDeliveryInfoDTOs);
@@ -61,6 +61,19 @@ public class DeliveryInfoController {
         deliveryInfoService.remove(id);
 
         log.info("getting delivery info for id {}", id);
+        log.debug("exit");
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity removeBulk(@RequestBody DeliveryInfoDTO... deliveryInfoDTO) {
+
+        log.debug("enter");
+        log.info("removing delivery info for deliveryInfoDTO {}", deliveryInfoDTO);
+
+        deliveryInfoService.remove(deliveryInfoDTO);
+
+        log.info("getting delivery info for deliveryInfoDTO {}", deliveryInfoDTO);
         log.debug("exit");
         return ResponseEntity.noContent().build();
     }

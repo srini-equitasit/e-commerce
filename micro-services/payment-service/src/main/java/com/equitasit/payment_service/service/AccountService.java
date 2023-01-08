@@ -70,22 +70,22 @@ public class AccountService {
     @Transactional
     public void debit(TransactionDTO transactionDTO) {
 
-        Optional<Account> existingAccount = accountRepository.findById(transactionDTO.getActId());
-        if (!existingAccount.isPresent()) {
+        Account existingAccount = accountRepository.findByUserId(transactionDTO.getUserId());
+        if (existingAccount == null) {
             throw new PaymentException(MsgConstants.ACT_NOT_FOUND);
         }
-        Account account = existingAccount.get();
-        Double amount = account.getAmount() - transactionDTO.getAmount();
+
+        Double amount = existingAccount.getAmount() - transactionDTO.getAmount();
 
         if (amount < 0) {
             throw new PaymentException(MsgConstants.ACT_IN_SUFFICIENT_FUNDS);
         }
 
-        AccountLog accountLog = createAccountLog(transactionDTO, account, "DEBIT");
+        AccountLog accountLog = createAccountLog(transactionDTO, existingAccount, "DEBIT");
 
-        account.setAmount(amount);
+        existingAccount.setAmount(amount);
 
-        accountRepository.save(account);
+        accountRepository.save(existingAccount);
 
         accountLogRepository.save(accountLog);
 
@@ -104,18 +104,18 @@ public class AccountService {
     @Transactional
     public void credit(TransactionDTO transactionDTO) {
 
-        Optional<Account> existingAccount = accountRepository.findById(transactionDTO.getActId());
-        if (!existingAccount.isPresent()) {
+        Account existingAccount = accountRepository.findByUserId(transactionDTO.getUserId());
+        if (existingAccount == null) {
             throw new PaymentException(MsgConstants.ACT_NOT_FOUND);
         }
-        Account account = existingAccount.get();
-        Double amount = account.getAmount() + transactionDTO.getAmount();
 
-        AccountLog accountLog = createAccountLog(transactionDTO, account, "CREDIT");
+        Double amount = existingAccount.getAmount() + transactionDTO.getAmount();
 
-        account.setAmount(amount);
+        AccountLog accountLog = createAccountLog(transactionDTO, existingAccount, "CREDIT");
 
-        accountRepository.save(account);
+        existingAccount.setAmount(amount);
+
+        accountRepository.save(existingAccount);
 
         accountLogRepository.save(accountLog);
 

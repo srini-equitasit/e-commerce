@@ -4,4 +4,6 @@ import com.equitasit.payment_service.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
+
+    public Account findByUserId(Integer userId);
 }

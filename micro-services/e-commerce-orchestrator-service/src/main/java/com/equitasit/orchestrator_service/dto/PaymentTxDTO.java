@@ -1,15 +1,14 @@
-package com.equitasit.payment_service.dto;
+package com.equitasit.orchestrator_service.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-
 @Setter
 @Getter
-@NoArgsConstructor
-public class TransactionDTO {
+@Builder
+public class PaymentTxDTO {
       private Double amount;
 
     private Integer userId;

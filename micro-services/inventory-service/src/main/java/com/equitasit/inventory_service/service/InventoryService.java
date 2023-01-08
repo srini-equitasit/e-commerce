@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,8 +34,11 @@ public class InventoryService {
 
     @Transactional
     public InventoryDTO save(InventoryDTO inventoryDTO) {
-        Inventory inventory = inventoryRepository.save(modelMapper.map(inventoryDTO, Inventory.class));
-        return modelMapper.map(inventory, InventoryDTO.class);
+
+        Inventory saved = inventoryRepository.save(modelMapper.map(inventoryDTO, Inventory.class));
+
+        return modelMapper.map(saved, InventoryDTO.class);
+
     }
 
     @Transactional
@@ -80,38 +84,44 @@ public class InventoryService {
     }
 
     @Transactional
-    public void debit(InventoryTxDTO inventoryTxDTO) {
-        Optional<Inventory> optionalInventory = inventoryRepository.findById(new InventoryId(inventoryTxDTO.getSellerId(), inventoryTxDTO.getProductId()));
-        if (!optionalInventory.isPresent()) {
-            throw new InventoryException(MsgConstants.INVENTORY_NOT_FOUND);
-        }
-        Inventory inventory = optionalInventory.get();
-        int quantity = inventory.getQty() - inventoryTxDTO.getTxQty();
-        if (quantity < 0) {
-            throw new InventoryException(MsgConstants.IN_SUFFICIENT_INVENTORY);
-        }
-        inventory.setQty(quantity);
-        InventoryLog inventoryLog = createInventoryLog("DEBIT", inventory, inventoryTxDTO);
-        inventoryRepository.save(inventory);
-        inventoryLogRepository.save(inventoryLog);
+    public void debit(InventoryTxDTO... inventoryTxDTOList) {
+        Arrays.stream(inventoryTxDTOList).forEach(inventoryTxDTO -> {
+            Optional<Inventory> optionalInventory = inventoryRepository.findById(new InventoryId(inventoryTxDTO.getSellerId(), inventoryTxDTO.getProductId()));
+            if (!optionalInventory.isPresent()) {
+                throw new InventoryException(MsgConstants.INVENTORY_NOT_FOUND);
+            }
+            Inventory inventory = optionalInventory.get();
+            int quantity = inventory.getQty() - inventoryTxDTO.getTxQty();
+            if (quantity < 0) {
+                throw new InventoryException(MsgConstants.IN_SUFFICIENT_INVENTORY);
+            }
+            inventory.setQty(quantity);
+            InventoryLog inventoryLog = createInventoryLog("DEBIT", inventory, inventoryTxDTO);
+            inventoryRepository.save(inventory);
+            inventoryLogRepository.save(inventoryLog);
+        });
 
 
     }
 
     @Transactional
-    public void credit(InventoryTxDTO inventoryTxDTO) {
-        Optional<Inventory> optionalInventory = inventoryRepository.findById(new InventoryId(inventoryTxDTO.getSellerId(), inventoryTxDTO.getProductId()));
-        if (!optionalInventory.isPresent()) {
-            throw new InventoryException(MsgConstants.INVENTORY_NOT_FOUND);
-        }
-        Inventory inventory = optionalInventory.get();
-        int quantity = inventory.getQty() + inventoryTxDTO.getTxQty();
+    public void credit(InventoryTxDTO... inventoryTxDTOList) {
 
-        inventory.setQty(quantity);
-        InventoryLog inventoryLog = createInventoryLog("CREDIT", inventory, inventoryTxDTO);
+        Arrays.stream(inventoryTxDTOList).forEach(inventoryTxDTO -> {
+            Optional<Inventory> optionalInventory = inventoryRepository.findById(new InventoryId(inventoryTxDTO.getSellerId(), inventoryTxDTO.getProductId()));
+            if (!optionalInventory.isPresent()) {
+                throw new InventoryException(MsgConstants.INVENTORY_NOT_FOUND);
+            }
+            Inventory inventory = optionalInventory.get();
+            int quantity = inventory.getQty() + inventoryTxDTO.getTxQty();
 
-        inventoryRepository.save(inventory);
-        inventoryLogRepository.save(inventoryLog);
+            inventory.setQty(quantity);
+            InventoryLog inventoryLog = createInventoryLog("CREDIT", inventory, inventoryTxDTO);
+
+            inventoryRepository.save(inventory);
+            inventoryLogRepository.save(inventoryLog);
+        });
+
 
     }
 

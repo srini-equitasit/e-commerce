@@ -80,6 +80,11 @@
             <version>1.6.11</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
+
         <!--        camunda -->
         <dependency>
             <groupId>org.camunda.bpm.springboot</groupId>
@@ -118,9 +123,8 @@
                         </exclude>
                     </excludes>
                     <systemPropertyVariables>
+
                         <enable_pause>false</enable_pause>
-
-
 
                         <payments_url>http://localhost:9087</payments_url>
                         <inventory_url>http://localhost:9088</inventory_url>

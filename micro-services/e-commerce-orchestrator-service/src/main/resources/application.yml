@@ -56,9 +56,9 @@ camunda:
     filter:
       create: All tasks
     admin-user:
-     id: e-commerce
-     password: e-commerce
-     firstName: e-commerce
+     id: ecommerce
+     password: ecommerce
+     firstName: ecommerce
 
 app:
   orchestrator:

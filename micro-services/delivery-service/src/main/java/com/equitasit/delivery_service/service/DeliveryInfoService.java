@@ -58,6 +58,11 @@ public class DeliveryInfoService {
         deliveryInfoRepository.deleteById(id);
     }
 
+    public void remove(DeliveryInfoDTO... deliveryInfoDTOList) {
+        List<Integer> idsList = Arrays.stream(deliveryInfoDTOList).map(deliveryInfoDTO -> deliveryInfoDTO.getId()).collect(Collectors.toList());
+        deliveryInfoRepository.deleteAllByIdInBatch(idsList);
+    }
+
     public List<DeliveryInfoDTO> getAll() {
         List<DeliveryInfo> deliveryInfos = deliveryInfoRepository.findAll();
         return deliveryInfos.stream().map(deliveryInfo -> modelMapper.map(deliveryInfo, DeliveryInfoDTO.class)).collect(Collectors.toList());

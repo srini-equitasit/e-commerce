@@ -65,7 +65,7 @@ public class InventoryController {
     }
 
     @PostMapping("debit")
-    public ResponseEntity debit(@RequestBody InventoryTxDTO inventoryTxDTO) {
+    public ResponseEntity debit(@RequestBody InventoryTxDTO... inventoryTxDTO) {
 
         log.debug("enter");
         log.info("saving the inventoryTxDTO info {}", inventoryTxDTO);
@@ -76,7 +76,7 @@ public class InventoryController {
     }
 
     @PostMapping("credit")
-    public ResponseEntity credit(@RequestBody InventoryTxDTO inventoryTxDTO) {
+    public ResponseEntity credit(@RequestBody InventoryTxDTO... inventoryTxDTO) {
 
         log.debug("enter");
         log.info("saving the inventoryTxDTO info {}", inventoryTxDTO);
