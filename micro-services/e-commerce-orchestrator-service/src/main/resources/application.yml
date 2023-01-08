@@ -1,0 +1,51 @@
+server:
+  port: 9091
+  shutdown: GRACEFUL
+spring:
+  application:
+    name: e-commerce-orchestrator-service
+  sleuth:
+    opentracing:
+      enabled: true
+  zipkin:
+    base-url: ${zipkin_url}
+  h2:
+    console.enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: sa
+    url: jdbc:h2:mem:mydb
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    defer-datasource-initialization: false
+    database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    url: jdbc:h2:mem:mydb
+    user: sa
+    password: sa
+
+#open docs
+springdoc:
+  api-docs:
+    path: /api-docs
+
+#actuator
+management:
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    shutdown.enabled: true
+    health:
+      show-details: ALWAYS
+      probes:
+        enabled: true
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+
+enablePause: ${enable_pause}
