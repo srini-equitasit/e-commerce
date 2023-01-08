@@ -75,9 +75,9 @@ public class DeliveryInfoController {
     }
 
     @GetMapping("bookings/{bookingId}")
-    public ResponseEntity getBookings(@PathVariable("bookingId") String bookingId) {
+    public ResponseEntity getBookings(@PathVariable("orderId") Integer orderId) {
         log.debug("enter");
-        List<DeliveryInfoDTO> deliveryInfoDTOList = deliveryInfoService.getBookingInfoList(bookingId);
+        List<DeliveryInfoDTO> deliveryInfoDTOList = deliveryInfoService.getOrderDeliveries(orderId);
         log.info("delivery size {}", deliveryInfoDTOList.size());
         log.debug("exit");
         return ResponseEntity.ok(deliveryInfoDTOList);

@@ -97,6 +97,7 @@ public class AccountService {
         accountLog.setBalance(account.getAmount());
         accountLog.setTxAmount(transactionDTO.getAmount());
         accountLog.setUserId(transactionDTO.getUserId());
+        accountLog.setOrderId(transactionDTO.getOrderId());
         return accountLog;
     }
 

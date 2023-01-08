@@ -63,8 +63,8 @@ public class DeliveryInfoService {
         return deliveryInfos.stream().map(deliveryInfo -> modelMapper.map(deliveryInfo, DeliveryInfoDTO.class)).collect(Collectors.toList());
     }
 
-    public List<DeliveryInfoDTO> getBookingInfoList(String bookingId) {
-        List<DeliveryInfo> deliveryInfos = deliveryInfoRepository.findByBookingId(bookingId);
+    public List<DeliveryInfoDTO> getOrderDeliveries(Integer orderId) {
+        List<DeliveryInfo> deliveryInfos = deliveryInfoRepository.findByOrderId(orderId);
         return deliveryInfos.stream().map(deliveryInfo -> modelMapper.map(deliveryInfo, DeliveryInfoDTO.class)).collect(Collectors.toList());
     }
 

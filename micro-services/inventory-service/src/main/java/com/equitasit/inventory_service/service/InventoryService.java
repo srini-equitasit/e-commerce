@@ -123,6 +123,7 @@ public class InventoryService {
         inventoryLog.setUserId(inventoryTxDTO.getUserId());
         inventoryLog.setProductId(inventoryTxDTO.getProductId());
         inventoryLog.setSellerId(inventoryTxDTO.getSellerId());
+        inventoryLog.setOrderId(inventoryTxDTO.getOrderId());
 
         return inventoryLog;
     }

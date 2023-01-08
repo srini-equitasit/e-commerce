@@ -25,10 +25,5 @@ public class DeliveryInfoDTO {
 
 
     private Integer userId;
-
-
-    private Date bookingDate;
-
-
-    private String bookingId;
+    private Integer orderId;
 }

@@ -31,4 +31,7 @@ public class AccountLog {
 
     @Column(name = "user_id")
     private Integer userId;
+
+    @Column(name = "order_id")
+    private Integer orderId;
 }

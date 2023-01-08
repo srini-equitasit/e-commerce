@@ -29,9 +29,6 @@ public class DeliveryInfo {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "booking_date")
-    private Date bookingDate;
-
-    @Column(name = "booking_id")
-    private String bookingId;
+    @Column(name = "order_id")
+    private Integer orderId;
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface DeliveryInfoRepository extends JpaRepository<DeliveryInfo, Integer> {
 
-    public List<DeliveryInfo> findByBookingId(String bookingId);
+    public List<DeliveryInfo> findByOrderId(Integer orderId);
 }

@@ -3,6 +3,8 @@ package com.equitasit.inventory_service.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+
+
 @Setter
 @Getter
 public class InventoryTxDTO {
@@ -13,4 +15,7 @@ public class InventoryTxDTO {
     private Integer sellerId;
 
     private Integer productId;
+
+
+    private Integer orderId;
 }

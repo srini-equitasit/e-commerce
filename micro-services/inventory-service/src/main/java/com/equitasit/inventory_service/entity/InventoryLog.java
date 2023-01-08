@@ -37,4 +37,7 @@ public class InventoryLog {
 
     @Column(name = "product_id")
     private Integer productId;
+
+    @Column(name = "order_id")
+    private Integer orderId;
 }
