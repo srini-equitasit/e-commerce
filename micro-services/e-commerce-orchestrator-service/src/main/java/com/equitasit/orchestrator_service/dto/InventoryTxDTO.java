@@ -4,11 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 
 @Setter
 @Getter
 @Builder
-public class InventoryTxDTO {
+public class InventoryTxDTO implements Serializable {
+    private static final long serialVersionUID = 1l;
     private Integer txQty;
 
     private Integer userId;

@@ -36,11 +36,8 @@ public class PaymentService implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
 
         try {
-
+            log.info(" payment process  started");
             OrderDTO orderDTO = (OrderDTO) execution.getVariable(Constants.ORDER);
-
-            Boolean isDebit = (Boolean) execution.getVariable(Constants.IS_DEBIT);
-
             PaymentTxDTO paymentTxDTO = PaymentTxDTO.builder()
                     .amount(orderDTO.getProducts().stream()
                             .mapToDouble(productOrderDTO -> productOrderDTO.getQty() * productOrderDTO.getQty()).sum())
@@ -55,16 +52,21 @@ public class PaymentService implements JavaDelegate {
 
             String url = orderConfig.getPaymentUrl() + this.resourceUrl;
 
-            ResponseEntity<String> responseEntity = restTemplate.exchange(orderConfig.getPaymentUrl(), HttpMethod.POST, request, String.class);
+            log.info("url {} ", url);
+
+            ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+            log.info("response {} ", responseEntity);
 
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 execution.setVariable(Constants.VALID, true);
             } else {
                 execution.setVariable(Constants.VALID, false);
             }
+            log.info(" payment process  success");
         } catch (Exception e) {
             log.error("payment error ", e);
             execution.setVariable(Constants.VALID, false);
         }
+        log.info(" payment process  completed \n");
     }
 }

@@ -40,6 +40,7 @@ public class InventoryService implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         try {
+            log.info(" inventory process  started");
             OrderDTO orderDTO = (OrderDTO) execution.getVariable(Constants.ORDER);
             List<InventoryTxDTO> inventoryTxDTOList = orderDTO.getProducts().stream().map(productOrderDTO -> {
                 InventoryTxDTO inventoryTxDTO = InventoryTxDTO.builder()
@@ -57,17 +58,21 @@ public class InventoryService implements JavaDelegate {
             HttpEntity<List<InventoryTxDTO>> request =
                     new HttpEntity<List<InventoryTxDTO>>(inventoryTxDTOList, headers);
 
-            ResponseEntity<String> responseEntity = restTemplate.exchange(orderConfig.getInventoryUrl(), HttpMethod.POST, request, String.class);
+            String url = orderConfig.getInventoryUrl() + this.resourceUri;
+            log.info("url  {} ", url);
 
+            ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+            log.info("response {} ", responseEntity);
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 execution.setVariable(Constants.VALID, true);
             } else {
                 execution.setVariable(Constants.VALID, false);
             }
-
+            log.info(" inventory process  success");
         } catch (Exception e) {
-            log.error("payment error ", e);
+            log.error("inventory error ", e);
             execution.setVariable(Constants.VALID, false);
         }
+        log.info(" inventory process  completed \n");
     }
 }

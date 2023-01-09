@@ -32,6 +32,7 @@ public class ReverseDeliveryService implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
+        log.info(" reverse delivery process  started");
         try {
             List<DeliveryInfoDTO> deliveryInfoDTOS = (List<DeliveryInfoDTO>) execution.getVariable(Constants.DELIVERY_INFO_DTOS);
 
@@ -40,7 +41,10 @@ public class ReverseDeliveryService implements JavaDelegate {
             HttpEntity<List<DeliveryInfoDTO>> request =
                     new HttpEntity<List<DeliveryInfoDTO>>(deliveryInfoDTOS, headers);
 
-            ResponseEntity<String> responseEntity = restTemplate.exchange(orderConfig.getDeliveryUrl() + this.resourceUrl, HttpMethod.POST, request, String.class);
+            String url = orderConfig.getDeliveryUrl() + this.resourceUrl;
+            log.info("url {}", url);
+            ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+            log.info("response {} ", responseEntity);
 
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 execution.setVariable(Constants.VALID, true);
@@ -48,9 +52,11 @@ public class ReverseDeliveryService implements JavaDelegate {
             } else {
                 execution.setVariable(Constants.VALID, false);
             }
+            log.info(" reverse delivery process  success");
         } catch (Exception e) {
-            log.error("payment error ", e);
+            log.error("revere delivery error ", e);
             execution.setVariable(Constants.VALID, false);
         }
+        log.info(" reverse delivery process  completed \n");
     }
 }

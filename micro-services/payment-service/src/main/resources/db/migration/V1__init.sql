@@ -11,6 +11,7 @@ CREATE TABLE account_log(
     id integer NOT NULL AUTO_INCREMENT,
     balance DOUBLE,
     tx_amount DOUBLE,
+    order_id integer,
     type varchar(255),
     user_id integer,
     primary key (id)

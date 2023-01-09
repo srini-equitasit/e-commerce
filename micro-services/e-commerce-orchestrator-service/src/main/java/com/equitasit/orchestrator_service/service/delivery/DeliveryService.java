@@ -39,13 +39,13 @@ public class DeliveryService implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
 
         try {
+            log.info(" delivery process  started");
             OrderDTO orderDTO = (OrderDTO) execution.getVariable(Constants.ORDER);
 
             List<DeliveryInfoDTO> deliveryInfoDTOS = orderDTO.getProducts().stream().map(ordProd -> {
                 DeliveryInfoDTO deliveryInfoDTO = DeliveryInfoDTO.builder()
                         .qty(ordProd.getQty())
                         .productId(ordProd.getProductId())
-
                         .userId(orderDTO.getUserId())
                         .orderId(orderDTO.getOrderId())
                         .build();
@@ -57,8 +57,11 @@ public class DeliveryService implements JavaDelegate {
             HttpEntity<List<DeliveryInfoDTO>> request =
                     new HttpEntity<List<DeliveryInfoDTO>>(deliveryInfoDTOS, headers);
 
-            ResponseEntity<List<DeliveryInfoDTO>> responseEntity = restTemplate.exchange(orderConfig.getDeliveryUrl() + this.resourceUrl, HttpMethod.POST, request, new ParameterizedTypeReference<List<DeliveryInfoDTO>>() {
+            String url = orderConfig.getDeliveryUrl() + this.resourceUrl;
+            log.info("url {} ", url);
+            ResponseEntity<List<DeliveryInfoDTO>> responseEntity = restTemplate.exchange(url, HttpMethod.POST, request, new ParameterizedTypeReference<List<DeliveryInfoDTO>>() {
             });
+            log.info("response {} ", responseEntity);
 
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 execution.setVariable(Constants.VALID, true);
@@ -66,10 +69,12 @@ public class DeliveryService implements JavaDelegate {
             } else {
                 execution.setVariable(Constants.VALID, false);
             }
+            log.info(" delivery process  success");
 
         } catch (Exception e) {
-            log.error("payment error ", e);
+            log.error("delivery error ", e);
             execution.setVariable(Constants.VALID, false);
         }
+        log.info(" delivery process  completed \n");
     }
 }

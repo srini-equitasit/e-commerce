@@ -1,14 +1,19 @@
 package com.equitasit.orchestrator_service.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.jackson.Jacksonized;
+
+import java.io.Serializable;
 
 @Setter
 @Getter
 @Builder
-public class DeliveryInfoDTO {
+@Jacksonized
+public class DeliveryInfoDTO implements Serializable {
 
     private Integer id;
 

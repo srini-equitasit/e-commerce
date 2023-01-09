@@ -24,5 +24,6 @@ CREATE TABLE inventory_log(
     user_id integer,
     seller_id integer,
     product_id integer,
+    order_id integer,
     primary key (id)
 );

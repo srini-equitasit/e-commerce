@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -21,13 +22,23 @@ public class OrderProcessService {
     private RuntimeService runtimeService;
 
     public StatusDTO execute(OrderDTO orderDTO) {
-        Map<String, Object> variables = new HashMap<>();
-        variables.put(Constants.ORDER, orderDTO);
+        log.info(" order process  started");
+        StatusDTO statusDTO = null;
+        try {
+            Map<String, Object> variables = new HashMap<>();
+            variables.put(Constants.ORDER, orderDTO);
 
 
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("order_process", variables);
-        StatusDTO statusDTO = new StatusDTO("process started, id = " + processInstance.getProcessInstanceId());
-        log.info(" order process  success");
+            ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("order_process", variables);
+
+
+            statusDTO = new StatusDTO("process completed, id = " + processInstance.getProcessInstanceId());
+            log.info(" order process  success");
+        } catch (Exception e) {
+            log.error("error", e);
+            statusDTO = new StatusDTO(e.getMessage());
+        }
+        log.info(" order process  completed");
         return statusDTO;
     }
 }
