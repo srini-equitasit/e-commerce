@@ -5,6 +5,8 @@ spring:
   application:
     name: e-commerce-orchestrator-service
   sleuth:
+    async:
+      enabled=false:
     opentracing:
       enabled: true
   zipkin:
