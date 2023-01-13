@@ -2,6 +2,28 @@ server:
   port: 9091
   shutdown: GRACEFUL
 spring:
+  kafka:
+    bootstrap-servers: localhost:9200,localhost:9300,localhost:9400
+    properties:
+      bootstrap:
+        servers: ${kafka_boot_strap_url}
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule   required username='${cluster_api_key}'   password='${cluster_api_secret}';
+
+    producer:
+      retries: 0
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: e_commerce_orchestrator
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   application:
     name: e-commerce-orchestrator-service
   sleuth:
@@ -58,9 +80,9 @@ camunda:
     filter:
       create: All tasks
     admin-user:
-     id: ecommerce
-     password: ecommerce
-     firstName: ecommerce
+      id: ecommerce
+      password: ecommerce
+      firstName: ecommerce
 
 app:
   orchestrator:
@@ -68,3 +90,4 @@ app:
       inventoryUrl: ${inventory_url}
       paymentUrl: ${payments_url}
       deliveryUrl: ${delivery_url}
+      topic: ${order_topic}

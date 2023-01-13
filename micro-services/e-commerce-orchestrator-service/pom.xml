@@ -92,6 +92,12 @@
             <version>${camunda.spring-boot.version}</version>
         </dependency>
 
+        <!-- kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
 
     </dependencies>
     <dependencyManagement>
@@ -131,6 +137,11 @@
                         <delivery_url>http://localhost:9090</delivery_url>
 
                         <zipkin_url>http://localhost:9411</zipkin_url>
+
+                        <kafka_boot_strap_url>pkc-n00kk.us-east-1.aws.confluent.cloud:9092</kafka_boot_strap_url>
+                        <order_topic>order</order_topic>
+                        <cluster_api_key>HEOAFDD535KKHKPK</cluster_api_key>
+                        <cluster_api_secret>ddM3YuhscVqSMVNQBjGESE8hPzFbBzkrhKNj4tlPKTjY3gpqqXulNSR46z/Zfvtw</cluster_api_secret>
 
 
                     </systemPropertyVariables>
