@@ -1,6 +1,6 @@
 package com.equitasit.orchestrator_service.service.order;
 
-import com.equitasit.orchestrator_service.dto.OrderCreateDTO;
+import com.equitasit.orchestrator_service.dto.OrderDTO;
 import com.equitasit.orchestrator_service.util.Constants;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +20,8 @@ public class OrderNotifyService implements JavaDelegate {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    @Value("${app.orchestrator.order.topic}")
-    private String orderTopic;
+    @Value("${app.orchestrator.order.completeTopic}")
+    private String orderCompleteTopic;
 
     @Autowired
     private ObjectMapper mapper;
@@ -30,10 +30,13 @@ public class OrderNotifyService implements JavaDelegate {
     public void execute(DelegateExecution execution) {
         log.info(" OrderNotifyService started");
         try {
-            OrderCreateDTO orderCreateDTO = new OrderCreateDTO();
-            orderCreateDTO.setStatus("ORDER_CREATED");
-            ListenableFuture<SendResult<String, String>> resultFuture = kafkaTemplate.send(orderTopic, mapper.writeValueAsString(orderCreateDTO));
+            OrderDTO orderDTO = (OrderDTO) execution.getVariable(Constants.ORDER);
+
+            orderDTO.setStatus("ORDER_CREATED");
+
+            ListenableFuture<SendResult<String, String>> resultFuture = kafkaTemplate.send(orderCompleteTopic, mapper.writeValueAsString(orderDTO));
             SendResult<String, String> sendResult = resultFuture.get();
+
             execution.setVariable(Constants.VALID, true);
             log.info(" OrderNotifyService  success");
         } catch (Exception e) {

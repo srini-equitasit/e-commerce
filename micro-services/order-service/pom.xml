@@ -95,6 +95,12 @@
             <version>1.6.11</version>
         </dependency>
 
+        <!-- kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
 
     </dependencies>
     <dependencyManagement>
@@ -127,12 +133,20 @@
                     </excludes>
                     <systemPropertyVariables>
                         <enable_pause>false</enable_pause>
-                        <db_url>jdbc:mysql://localhost:3306/order?createDatabaseIfNotExist=true</db_url>
+                        <db_url>jdbc:mysql://localhost:3306/order_info?createDatabaseIfNotExist=true</db_url>
                         <db_user>root</db_user>
                         <db_pwd>root</db_pwd>
                         <zipkin_url>http://localhost:9411</zipkin_url>
                         <spring.profiles.active>prod</spring.profiles.active>
-                        <db_name>order</db_name>
+                        <db_name>order_info</db_name>
+
+                        <kafka_boot_strap_url>pkc-n00kk.us-east-1.aws.confluent.cloud:9092</kafka_boot_strap_url>
+                        <order_create_topic>order_create</order_create_topic>
+                        <order_complete_topic>order_complete</order_complete_topic>
+                        <order_notify_topic>order_notify</order_notify_topic>
+                        <cluster_api_key>HEOAFDD535KKHKPK</cluster_api_key>
+                        <cluster_api_secret>ddM3YuhscVqSMVNQBjGESE8hPzFbBzkrhKNj4tlPKTjY3gpqqXulNSR46z/Zfvtw</cluster_api_secret>
+
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

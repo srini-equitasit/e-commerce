@@ -1,4 +1,4 @@
-package com.equitasit.orchestrator_service.dto;
+package com.equitasit.order_service.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +25,9 @@ public class OrderDTO implements Serializable {
 
     private String email;
 
-    private Integer orderId;
+    private Integer id;
 
     private String status;
+
 
 }

@@ -3,7 +3,6 @@ server:
   shutdown: GRACEFUL
 spring:
   kafka:
-    bootstrap-servers: localhost:9200,localhost:9300,localhost:9400
     properties:
       bootstrap:
         servers: ${kafka_boot_strap_url}
@@ -27,6 +26,8 @@ spring:
   application:
     name: e-commerce-orchestrator-service
   sleuth:
+    kafka:
+      enabled: true
     async:
       enabled=false:
     opentracing:
@@ -90,4 +91,6 @@ app:
       inventoryUrl: ${inventory_url}
       paymentUrl: ${payments_url}
       deliveryUrl: ${delivery_url}
-      topic: ${order_topic}
+
+      completeTopic: ${order_complete_topic}
+      createTopic: ${order_create_topic}

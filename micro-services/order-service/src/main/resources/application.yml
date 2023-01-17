@@ -2,9 +2,33 @@ server:
   port: 9084
   shutdown: GRACEFUL
 spring:
+
+  kafka:
+    properties:
+      bootstrap:
+        servers: ${kafka_boot_strap_url}
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule   required username='${cluster_api_key}'   password='${cluster_api_secret}';
+
+    producer:
+      retries: 0
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: order
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   application:
     name: order-service
   sleuth:
+    kafka:
+      enabled: true
     opentracing:
       enabled: true
   zipkin:
@@ -49,3 +73,9 @@ management:
       enabled: true
 
 enablePause: ${enable_pause}
+
+app:
+  order:
+    createTopic: ${order_create_topic}
+    completeTopic: ${order_complete_topic}
+    notifyTopic: ${order_notify_topic}

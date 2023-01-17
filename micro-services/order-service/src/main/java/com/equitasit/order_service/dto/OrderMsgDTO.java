@@ -1,4 +1,4 @@
-package com.equitasit.orchestrator_service.dto;
+package com.equitasit.order_service.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class OrderCreateDTO {
+public class OrderMsgDTO {
     private String status;
+
+    private OrderDTO orderDTO;
 }
