@@ -1,7 +1,9 @@
 package com.equitasit.order_service.service;
 
 import com.equitasit.order_service.dto.OrderDTO;
+import com.equitasit.order_service.dto.ProductOrderDTO;
 import com.equitasit.order_service.entity.Orders;
+import com.equitasit.order_service.entity.ProductOrder;
 import com.equitasit.order_service.exception.OrdersException;
 import com.equitasit.order_service.repository.OrdersRepository;
 import com.equitasit.order_service.util.MsgConstants;
@@ -15,6 +17,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,8 +61,15 @@ public class OrdersService {
 
     public OrderDTO save(OrderDTO orderDTO) {
 
-        Orders orders = modelMapper.map(orderDTO, Orders.class);
-        Orders savedOrders = ordersRepository.save(orders);
+//        Orders order = new Orders();
+//        order.setOrderCreatedDt(new Date());
+//        order.setStatus(orderDTO.getStatus());
+//        order.setEmail(orderDTO.getEmail());
+//        order.setProducts(orderDTO.getProducts().stream().map(pd -> modelMapper.map(pd, ProductOrder.class)).collect(Collectors.toList()));
+
+        modelMapper.createTypeMap(ProductOrderDTO.class, ProductOrder.class);
+        Orders order = modelMapper.map(orderDTO, Orders.class);
+        Orders savedOrders = ordersRepository.save(order);
         return modelMapper.map(savedOrders, OrderDTO.class);
     }
 

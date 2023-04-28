@@ -20,6 +20,9 @@ public class OrderConsumer {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private OrdersService ordersService;
+
     @KafkaListener(topics = {"${app.order.completeTopic}"})
     public void consume(ConsumerRecord<Integer, String> record) throws Exception {
 
@@ -28,6 +31,9 @@ public class OrderConsumer {
         log.info("received = " + record.value() + " with key " + record.key());
 
         OrderDTO orderDTO = objectMapper.readValue(record.value(), OrderDTO.class);
+
+
+        ordersService.update(orderDTO);
 
         orderNotificationService.notifyOrder(orderDTO);
 

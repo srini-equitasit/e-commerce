@@ -26,7 +26,7 @@ public class ProductOrder {
     @Column(name = "qty")
     private Integer qty;
 
-    @Column(name = "qty")
+    @Column(name = "price")
     private Double price;
 
 
